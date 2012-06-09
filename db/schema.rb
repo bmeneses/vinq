@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608044415) do
+ActiveRecord::Schema.define(:version => 20120609043449) do
 
   create_table "appelations", :force => true do |t|
     t.integer  "appelation_id"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(:version => 20120608044415) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
+  create_table "varietals", :force => true do |t|
+    t.integer  "varietal_id"
+    t.string   "name"
+    t.string   "url"
+    t.integer  "winetype_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "wines", :force => true do |t|
     t.string   "product_id"
     t.string   "name"
@@ -61,6 +70,10 @@ ActiveRecord::Schema.define(:version => 20120608044415) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "appelation_id"
+    t.integer  "varietal_id"
+    t.decimal  "price_min"
+    t.decimal  "price_max"
+    t.decimal  "price_retail"
   end
 
 end

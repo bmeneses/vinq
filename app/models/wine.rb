@@ -17,7 +17,7 @@ class Wine < ActiveRecord::Base
 
   attr_accessible :product_id, :name, :url, :type, :year
 
-  validates :product_id, :name, :type, presence: true
+  validates :product_id, :name, :type, presence: true, uniqueness: true
   validates :year, presence: true, 
                    numericality: { less_than_or_equal_to: Time.now.year }
 
@@ -25,6 +25,7 @@ class Wine < ActiveRecord::Base
   validates :url, presence: true, format: VALID_URL_FORMAT
 
   belongs_to :appelation
+  belongs_to :varietal
 
 
   # helpers

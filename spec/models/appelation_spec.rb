@@ -23,47 +23,7 @@ describe Appelation do
 
   subject { wine.appelation }
 
-  it { should respond_to(:appelation_id) }
-  it { should respond_to(:name) }
-  it { should respond_to(:url) }
-
-  describe "when appelation_id is not present" do
-    before { wine.appelation.appelation_id = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when name is not present" do
-    before { wine.appelation.name = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when url is not present" do
-    before { wine.appelation.url = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when URLs are the right format" do
-    before do
-      valid_url = "http://www.appelation.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
-      wine.appelation.url = valid_url
-    end
-    it { should be_valid }
-  end
-
-
-  describe "url is not the right format" do
-    before { wine.appelation.url = "http:/blah" }
-    it { should_not be_valid }
-  end
-
-
-  describe "when appelation_id is not unique" do
-    before do
-      other_appelation = wine.appelation.dup
-      other_appelation.save
-    end
-    it { should_not be_valid }
-  end
+  it_behaves_like "a wine_attribute"
 
 end
 
