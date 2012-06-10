@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609043449) do
+ActiveRecord::Schema.define(:version => 20120610010613) do
 
   create_table "appelations", :force => true do |t|
     t.integer  "appelation_id"
@@ -29,6 +29,30 @@ ActiveRecord::Schema.define(:version => 20120609043449) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "geolocations", :force => true do |t|
+    t.float    "lat"
+    t.float    "long"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "product_attributes", :force => true do |t|
+    t.integer  "product_attribute_id"
+    t.integer  "wine_id"
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "product_attributes_wines", :id => false, :force => true do |t|
+    t.integer "product_attribute_id"
+    t.integer "wine_id"
+  end
+
+  add_index "product_attributes_wines", ["product_attribute_id", "wine_id"], :name => "idx_wines_product_attributes"
 
   create_table "regions", :force => true do |t|
     t.integer  "region_id"
@@ -62,18 +86,19 @@ ActiveRecord::Schema.define(:version => 20120609043449) do
   end
 
   create_table "wines", :force => true do |t|
-    t.string   "product_id"
+    t.string   "wine_id"
     t.string   "name"
     t.string   "url"
     t.string   "type"
     t.string   "year"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "appelation_id"
     t.integer  "varietal_id"
     t.decimal  "price_min"
     t.decimal  "price_max"
     t.decimal  "price_retail"
+    t.integer  "product_attribute_id"
   end
 
 end

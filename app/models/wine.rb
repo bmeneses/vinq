@@ -2,22 +2,29 @@
 #
 # Table name: wines
 #
-#  id            :integer         not null, primary key
-#  product_id    :string(255)
-#  name          :string(255)
-#  url           :string(255)
-#  type          :string(255)
-#  year          :string(255)
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
-#  appelation_id :integer
+#  id                   :integer         not null, primary key
+#  wine_id              :string(255)
+#  name                 :string(255)
+#  url                  :string(255)
+#  type                 :string(255)
+#  year                 :string(255)
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
+#  appelation_id        :integer
+#  varietal_id          :integer
+#  price_min            :decimal(, )
+#  price_max            :decimal(, )
+#  price_retail         :decimal(, )
+#  product_attribute_id :integer
 #
 
 class Wine < ActiveRecord::Base
 
-  attr_accessible :product_id, :name, :url, :type, :year
+  attr_accessible :wine_id, :name, :url, :type, :year
 
-  validates :product_id, :name, :type, presence: true, uniqueness: true
+
+  validates :wine_id, :name, :type, presence: true
+  validates :wine_id, uniqueness: true
   validates :year, presence: true, 
                    numericality: { less_than_or_equal_to: Time.now.year }
 
@@ -26,7 +33,7 @@ class Wine < ActiveRecord::Base
 
   belongs_to :appelation
   belongs_to :varietal
-
+  has_and_belongs_to_many :product_attributes
 
   # helpers
   def region

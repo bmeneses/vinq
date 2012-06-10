@@ -15,20 +15,10 @@ require 'spec_helper'
 
 describe Region do
 
-  let(:wine) { FactoryGirl.create(:wine) }
+  let(:region) { FactoryGirl.create(:region) }
 
-  before do
-    wine.build_appelation(appelation_id: "123",
-                          name: "Barossa Valley",
-                          url: "http://www.google.com")
-    
-    wine.appelation.build_region(region_id: "555",
-                                 name: "Australia",
-                                 url: "http://www.wine.com.au/")
-  end
+  subject { region }
 
-  subject { wine.appelation.region }
-
-  it_behaves_like "a wine_attribute"
+  it_behaves_like "a general_attribute"
 
 end
