@@ -15,15 +15,11 @@ require 'spec_helper'
 
 describe Appelation do
 
-  let(:wine) { FactoryGirl.create(:wine) }
+  let(:appelation) { FactoryGirl.create(:appelation) }
 
-  before { wine.build_appelation(appelation_id: "123",
-                                 name: "Barossa Valley",
-                                 url: "http://www.google.com") }
+  subject { appelation }
 
-  subject { wine.appelation }
-
-  it_behaves_like "a wine_attribute"
+  it_behaves_like "a general_attribute"
 
 end
 

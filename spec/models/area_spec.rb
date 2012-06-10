@@ -14,66 +14,12 @@ require 'spec_helper'
 
 describe Area do
 
-  let(:wine) { FactoryGirl.create(:wine) }
+  let(:area) { FactoryGirl.create(:area) }
 
-  before do
-    wine.build_appelation(appelation_id: "123",
-                          name: "Barossa Valley",
-                          url: "http://www.google.com")
-    
-    wine.appelation.build_region(region_id: "555",
-                                 name: "Australia",
-                                 url: "http://www.wine.com.au/")
+  subject { area }
 
-    wine.appelation.region.build_area(area_id: "999",
-                                      name: "Southern Hemisphere",
-                                      url: "http://www.someurl.com")
-  end
+  it_behaves_like "a general_attribute"
 
-  subject { wine.appelation.region.area }
-
-  it { should respond_to(:area_id) }
-  it { should respond_to(:name) }
-  it { should respond_to(:url) }
-
-  describe "when area_id is not present" do
-    before { wine.appelation.region.area.area_id = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when name is not present" do
-    before { wine.appelation.region.area.name = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when url is not present" do
-    before { wine.appelation.region.area.url = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when URLs are the right format" do
-    before do
-      valid_url = "http://www.appelation.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
-      wine.appelation.region.area.url = valid_url
-    end
-    it { should be_valid }
-  end
-
-  describe "url is not the right format" do
-    before { wine.appelation.region.area.url = "http:/blah" }
-    it { should_not be_valid }
-  end
-
-  describe "when area_id is not unique" do
-    before do
-      other_region = wine.appelation.region.area.dup
-      other_region.save
-    end
-
-    it { should_not be_valid }
-
-  end
 end
 
-#
 
