@@ -7,7 +7,9 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem 'hashie', '1.2'
-gem 'typhoeus', '0.4.2'
+#gem 'typhoeus', '0.4.2'
+gem 'httparty'
+gem 'fakeweb'
 
 group :development do
   gem 'sqlite3', '1.3.5'
@@ -31,6 +33,7 @@ group :test, :development do
   gem 'guard-spork'
   gem 'spork'
   gem 'railroady'
+  gem 'vcr'
 end
 
 group :test do

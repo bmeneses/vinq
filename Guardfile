@@ -15,7 +15,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('spec/support/')
 end
 
-guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
+guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb --format d' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -23,9 +23,17 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   # Rails example
   watch(%r{^spec/.+_spec\.rb$})
   watch('spec/lib/wine_api_spec.rb')
-  watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
+  watch(%r{^app/(.+)\.rb$}) do |m|
+    puts m
+    puts "x-spec/#{m[1]}_spec.rb"
+    "spec/#{m[1]}_spec.rb"
+  end                       # { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch(%r{^lib/(.+)\.rb$}) do |m| # 
+    puts m#                          { |m| "spec/lib/#{m[1]}_spec.rb" }
+    puts "y-spec/lib/#{m[1]}_spec.rb"
+    "spec/lib/#{m[1]}_spec.rb"
+  end
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('spec/spec_helper.rb')                        { "spec" }
