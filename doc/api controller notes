@@ -1,0 +1,18 @@
+the category api should run and get a comprehensive list of categories available
+the controller should then query the catalog for each category
+	* the controller should get each offset group before beginning a compare with the existing database
+
+	* the controller should ask the api to sort descending by date so the newest items are received first
+
+	* the controller should compare the products that it downloaded in the response hash and see if they're in the product database
+
+	 * if it exists, don't add, then quit (as all remaining items already in the db)
+
+	separate task (due to api constraints)
+	* the controller should then walk through each individual products and query by product to get the professional ratings
+
+
+
+update the category list
+then ask how many the db has of each category (category key will be )
+if it doesn't match, then update

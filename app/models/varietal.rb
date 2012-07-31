@@ -13,13 +13,13 @@
 
 class Varietal < ActiveRecord::Base
 
-  attr_accessible :varietal_id, :name, :url
+  attr_accessible :varietal_id, :name, :url, :id, :winetype
 
   validates :varietal_id, :name, presence: true, uniqueness: true
 
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :url, presence: true, format: VALID_URL_FORMAT
 
-  has_one :winetype
+  # has_one :winetype
 
 end

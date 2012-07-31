@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120610010613) do
+ActiveRecord::Schema.define(:version => 20120730024542) do
 
-  create_table "appelations", :force => true do |t|
-    t.integer  "appelation_id"
+  create_table "appellations", :force => true do |t|
+    t.integer  "appellation_id"
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "region_id"
   end
 
@@ -89,11 +89,11 @@ ActiveRecord::Schema.define(:version => 20120610010613) do
     t.string   "wine_id"
     t.string   "name"
     t.string   "url"
-    t.string   "type"
+    t.string   "wine_type"
     t.string   "year"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.integer  "appelation_id"
+    t.integer  "appellation_id"
     t.integer  "varietal_id"
     t.decimal  "price_min"
     t.decimal  "price_max"

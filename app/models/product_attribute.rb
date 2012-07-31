@@ -13,7 +13,7 @@
 
 class ProductAttribute < ActiveRecord::Base
 
-  attr_accessible :product_attribute_id, :name, :url
+  attr_accessible :product_attribute_id, :name, :url, :id
 
   validates :product_attribute_id, :name, presence: true, uniqueness: true
 

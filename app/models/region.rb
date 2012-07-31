@@ -21,7 +21,7 @@ class Region < ActiveRecord::Base
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :url, presence: true, format: VALID_URL_FORMAT
 
-  has_many :appelations
+  has_many :appellations
   belongs_to :area
 
 end

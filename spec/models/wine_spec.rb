@@ -10,7 +10,7 @@
 #  year                 :string(255)
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
-#  appelation_id        :integer
+#  appellation_id        :integer
 #  varietal_id          :integer
 #  price_min            :decimal(, )
 #  price_max            :decimal(, )
@@ -26,15 +26,15 @@ describe Wine do
 
   before do
 
-    wine.create_appelation(appelation_id: "123",
+    wine.create_appellation(appellation_id: "123",
                           name: "Barossa Valley",
                           url: "http://www.google.com")
     
-    wine.appelation.create_region(region_id: "555",
+    wine.appellation.create_region(region_id: "555",
                                  name: "Australia",
                                  url: "http://www.wine.com.au/")
 
-    wine.appelation.region.create_area(area_id: "999",
+    wine.appellation.region.create_area(area_id: "999",
                                       name: "Southern Hemisphere",
                                       url: "http://www.someurl.com")
 
@@ -53,42 +53,51 @@ describe Wine do
 
   # fields
 
-  it { should respond_to(:type) }
+  it { should respond_to(:wine_type) }
   it { should respond_to(:year) }
 
   # associations
 
-  it { should respond_to(:appelation) }
+  it { should respond_to(:appellation) }
   it { should respond_to(:region) }
   it { should respond_to(:area) }
   it { should respond_to(:product_attributes) }
 
-  its(:appelation) { should_not be_nil }
+  its(:appellation) { should_not be_nil }
   its(:region) { should_not be_nil }
   its(:area) { should_not be_nil }
 
   # helper tests
 
-  describe "when type is not present" do
-    before { wine.type = " " }
+  describe "when wine_type is not present" do
+    before { wine.wine_type = " " }
     it { should_not be_valid }
   end
 
-  describe "when year is not present" do
-    before { wine.year = " " }
-    it { should_not be_valid }
-  end
+  # describe "when year is not present" do
+  #   before { wine.year = " " }
+  #   it { should_not be_valid }
+  # end
 
-  describe "year must be numeric" do
-    before { wine.year = "abc123" }
-    it { should_not be_valid }
-  end
+  # describe "year must be numeric" do
+  #   before { wine.year = "abc123" }
+  #   it { should_not be_valid }
+  # end
 
-  describe "year must less than or equal to today's year" do
-    before { wine.year = Time.now.year + 1 }
-    it { should_not be_valid }
-  end
+  # describe "year must less than or equal to today's year" do
+  #   before { wine.year = Time.now.year + 1 }
+  #   it { should_not be_valid }
+  # end
 
+
+  # method tests
+  describe "#label" do
+    before { @label = wine.label(:thumb) }
+    it "should return a url " do
+      @label.should be =~ /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+    end
+    
+  end
   
 
 end

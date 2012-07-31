@@ -13,11 +13,11 @@
 			],
 			[
 				"appelati",
-				"appelation_id"
+				"appellation_id"
 			],
 			[
-				"appelation",
-				"appelations"
+				"appellation",
+				"appellations"
 			],
 			[
 				"DB",
@@ -129,25 +129,25 @@
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608044415_remove_region_id_from_areas.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608044329_delete_region_id_from_areas.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608043710_add_area_id_to_regions.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606035807_add_appelation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606051718_delete_appelation_id_from.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606052004_add_region_id_to_appelations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606035807_add_appellation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606051718_delete_appellation_id_from.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606052004_add_region_id_to_appellations.rb",
 		"/Users/brian/rails_projects/vinq/Rakefile",
 		"/Users/brian/rails_projects/vinq/spec/factories.rb",
 		"/Users/brian/rails_projects/vinq/spec/models/wine_spec.rb",
 		"/Users/brian/Documents/valid_json_wine_api.json",
-		"/Users/brian/rails_projects/vinq/spec/models/appelation_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/appellation_spec.rb",
 		"/Users/brian/rails_projects/vinq/spec/models/region_spec.rb",
 		"/Users/brian/rails_projects/vinq/app/models/region.rb",
-		"/Users/brian/rails_projects/vinq/app/models/appelation.rb",
+		"/Users/brian/rails_projects/vinq/app/models/appellation.rb",
 		"/Users/brian/rails_projects/vinq/app/models/wine.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120605004550_create_areas.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120605004531_create_regions.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605004736_create_appelations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605004736_create_appellations.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120531040825_create_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605002816_add_appelation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605002357_add_appelation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120604234455_create_appelations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605002816_add_appellation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605002357_add_appellation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120604234455_create_appellations.rb",
 		"/Users/brian/rails_projects/vinq.bak/app/models/user.rb",
 		"/Users/brian/rails_projects/vinq/.rvmrc",
 		"/Users/brian/rails_projects/vinq.bak/Gemfile",
@@ -227,7 +227,7 @@
 		"find_history":
 		[
 			"region.",
-			"appelation",
+			"appellation",
 			"https",
 			"wine.",
 			":type => String",
@@ -243,7 +243,7 @@
 			"field    ",
 			"^\\s",
 			"=\\s.+",
-			"   result          = @page.search(\"//div[@class='data']\")\n    ttb_id          = result[1].text.strip\n    type            = result[3].text.strip\n    origin          = result[4].text.strip\n    permit          = result[5].text.strip\n    address_field   = result[6].text.strip\n    #company         = address_field.match('^(.+)')[1]\n    #street_address  = address_field.match('^(.+)')[2]\n    #city            = address_field.match('^(.+)')[3]\n    #state, zip      = address_field.match('^(.+)')[4].split\n    brand           = result[8].text.strip\n    fanciful_name   = result[10].text.strip\n    email           = result[11].text.strip\n    varietals       = result[12].text.strip\n    net_contents    = result[17].text.strip\n    alcohol_percent = result[18].text.strip\n    appelation      = result[19].text.strip\n    vintage         = result[21].text.strip\n    phone           = result[21].text.strip\n    fax             = result[22].text.strip\n    other_wording   = result[23].text.strip.gsub('19. SHOW ANY WORDING (a) APPEARING ON MATERIALS FIRMLY AFFIXED TO THE CONTAINER (e.g., caps, celoseals, corks, etc.) OTHER THAN THE LABLES AFFIXED BELOW, OR (b) BLOWN, BRANDED OR EMBOSSED ON THE CONTAINER (e.g., net contents etc.).  THIS WORDING MUST BE NOTED HERE EVEN IF IT DUPLICATES PORTIONS OF THE LABELS AFFIXED BELOW.  ALSO, PROVIDE TRANSLATIONS OF FOREIGN LANGUAGE TEXT APPEARING ON LABELS.','')\n    completion_date = result[28].text.strip\n    approved        = result[31].text.include?('APPROVED')\n    designation     = result[32].text.strip\n   ",
+			"   result          = @page.search(\"//div[@class='data']\")\n    ttb_id          = result[1].text.strip\n    type            = result[3].text.strip\n    origin          = result[4].text.strip\n    permit          = result[5].text.strip\n    address_field   = result[6].text.strip\n    #company         = address_field.match('^(.+)')[1]\n    #street_address  = address_field.match('^(.+)')[2]\n    #city            = address_field.match('^(.+)')[3]\n    #state, zip      = address_field.match('^(.+)')[4].split\n    brand           = result[8].text.strip\n    fanciful_name   = result[10].text.strip\n    email           = result[11].text.strip\n    varietals       = result[12].text.strip\n    net_contents    = result[17].text.strip\n    alcohol_percent = result[18].text.strip\n    appellation      = result[19].text.strip\n    vintage         = result[21].text.strip\n    phone           = result[21].text.strip\n    fax             = result[22].text.strip\n    other_wording   = result[23].text.strip.gsub('19. SHOW ANY WORDING (a) APPEARING ON MATERIALS FIRMLY AFFIXED TO THE CONTAINER (e.g., caps, celoseals, corks, etc.) OTHER THAN THE LABLES AFFIXED BELOW, OR (b) BLOWN, BRANDED OR EMBOSSED ON THE CONTAINER (e.g., net contents etc.).  THIS WORDING MUST BE NOTED HERE EVEN IF IT DUPLICATES PORTIONS OF THE LABELS AFFIXED BELOW.  ALSO, PROVIDE TRANSLATIONS OF FOREIGN LANGUAGE TEXT APPEARING ON LABELS.','')\n    completion_date = result[28].text.strip\n    approved        = result[31].text.include?('APPROVED')\n    designation     = result[32].text.strip\n   ",
 			"=\\s$+",
 			"scraper",
 			"expect",
@@ -257,9 +257,9 @@
 		"regex": false,
 		"replace_history":
 		[
-			"appelation.",
+			"appellation.",
 			"region",
-			"appelation.",
+			"appellation.",
 			"type: String",
 			"user",
 			"last_name",
@@ -473,23 +473,23 @@
 			],
 			[
 				"addappe",
-				"db/migrate/20120606035807_add_appelation_to_wines.rb"
+				"db/migrate/20120606035807_add_appellation_to_wines.rb"
 			],
 			[
 				"add_ap",
-				"db/migrate/20120606052004_add_region_id_to_appelations.rb"
+				"db/migrate/20120606052004_add_region_id_to_appellations.rb"
 			],
 			[
 				"add",
-				"db/migrate/20120606035807_add_appelation_to_wines.rb"
+				"db/migrate/20120606035807_add_appellation_to_wines.rb"
 			],
 			[
 				"delete",
-				"db/migrate/20120606051718_delete_appelation_id_from.rb"
+				"db/migrate/20120606051718_delete_appellation_id_from.rb"
 			],
 			[
 				"app",
-				"app/models/appelation.rb"
+				"app/models/appellation.rb"
 			],
 			[
 				"region",
@@ -521,11 +521,11 @@
 			],
 			[
 				"add_app",
-				"db/migrate/20120605002816_add_appelation_to_wines.rb"
+				"db/migrate/20120605002816_add_appellation_to_wines.rb"
 			],
 			[
 				"appelatio",
-				"db/migrate/20120604234455_create_appelations.rb"
+				"db/migrate/20120604234455_create_appellations.rb"
 			],
 			[
 				"wine",

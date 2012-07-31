@@ -12,16 +12,21 @@ FactoryGirl.define do
 
 
   factory :wine do
-    wine_id "113077"
+    wine_id "9990999"
     name "Boozy Cabernet"
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
-    type "Cabernet Sauvignon"
+    wine_type "Cabernet Sauvignon"
     year "1996"
+
+    # factory :wine_complete do 
+    #   association :product_attributes, factory: :product_attribute
+    # end
+
   end
 
-  factory :appelation do
-    appelation_id "149591"
-    name "Barossa Valley"
+  factory :appellation do
+    appellation_id "999999999999"
+    name "Wonderful Place"
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
@@ -50,10 +55,13 @@ FactoryGirl.define do
   end
 
   factory :product_attribute do
-    product_attribute_id 12345
-    name "Spicy"
+    product_attribute_id 1336
+    name "Cabernet Sauvignon"
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
+
   end
+
+
   
 end
 

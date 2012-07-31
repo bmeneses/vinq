@@ -38,10 +38,24 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
+
+    VCR.configure do |c|
+      c.cassette_library_dir = 'fixtures/vcr_cassettes'
+      c.hook_into :fakeweb
+      c.default_cassette_options = { 
+          :re_record_interval => 1.year, 
+          :serialize_with => :json
+        }
+    end
+
+    DatabaseCleaner.strategy = :truncation
+    
   end
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+  DatabaseCleaner.clean
+
 
 end

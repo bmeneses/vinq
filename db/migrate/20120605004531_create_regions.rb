@@ -4,7 +4,7 @@ class CreateRegions < ActiveRecord::Migration
       t.integer :region_id
       t.string :name
       t.string :url
-      t.integer :appelation_id
+      t.integer :appellation_id
 
       t.timestamps
     end

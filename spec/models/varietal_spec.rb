@@ -21,7 +21,7 @@ describe Varietal do
 
   it_behaves_like "a general_attribute"
 
-  it { should respond_to(:winetype) }
+  #it { should respond_to(:winetype) }
 
 
 end
