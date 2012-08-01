@@ -11,7 +11,7 @@
 #
 
 class Area < ActiveRecord::Base
-  attr_accessible :area_id, :name, :url
+  attr_accessible :area_id, :name, :url, :id
 
   validates :area_id, :name, presence: true, uniqueness: true
 

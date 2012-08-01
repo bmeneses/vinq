@@ -36,7 +36,7 @@ class Wine < ActiveRecord::Base
   belongs_to :varietal
   has_and_belongs_to_many :product_attributes
 
-  @label_base_url = "http://cache.wine.com/labels"
+  
 
   # helpers
   def region
@@ -48,8 +48,9 @@ class Wine < ActiveRecord::Base
   end
   
   def label(size)
+    @label_base_url = "http://cache.wine.com/labels"
     size == :thumb ? img_size = 'm' : img_size = 'l'
-    "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id != nil) 
+    "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id == nil) 
   end
 
 

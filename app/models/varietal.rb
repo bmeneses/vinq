@@ -13,7 +13,7 @@
 
 class Varietal < ActiveRecord::Base
 
-  attr_accessible :varietal_id, :name, :url, :id, :winetype
+  attr_accessible :varietal_id, :name, :url, :id
 
   validates :varietal_id, :name, presence: true, uniqueness: true
 

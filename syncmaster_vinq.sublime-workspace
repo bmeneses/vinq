@@ -8,16 +8,24 @@
 				"do"
 			],
 			[
+				"product_attri",
+				"product_attribute"
+			],
+			[
+				"product",
+				"product_attributes"
+			],
+			[
 				"area",
 				"area_id"
 			],
 			[
 				"appelati",
-				"appellation_id"
+				"appelation_id"
 			],
 			[
-				"appellation",
-				"appellations"
+				"appelation",
+				"appelations"
 			],
 			[
 				"DB",
@@ -32,29 +40,130 @@
 	"buffers":
 	[
 		{
-			"file": "spec/lib/wine_api/catalog_spec.rb",
+			"file": "app/models/wine.rb",
 			"settings":
 			{
-				"buffer_size": 389,
+				"buffer_size": 1550,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Gemfile",
+			"file": "spec/factories.rb",
 			"settings":
 			{
-				"buffer_size": 995,
+				"buffer_size": 1779,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "module WineApi\n  class Catalog\n    include HTTParty\n    attr_accessor :json_response, :url\n\n    def get()\n      \n      base_url = 'http://services.wine.com/api/beta2/service.svc/json/catalog'\n      api_key = 'd416c704b94a08167684e8f5d1d7e987'\n      categories = '490+124'\n      req_offset = '1'\n      req_size = '100'\n      req_sort = 'name|ascending'\n\n      @url = \"#{base_url}?filter=categories(#{categories})&size=#{req_size}&offset=#{req_offset}&sort=#{req_sort}&apikey=#{api_key}\"\n\n      @json_response = HTTParty.get(URI.encode(@url))\n\n      response_hash = Hashie::Mash.new(@json_response)\n\n      # request = Typhoeus::Request.new(url,\n      #                                 :body          => \"this is a request body\",\n      #                                 :method        => :get,\n      #                                 :headers       => {:Accept => \"text/html\"},\n      #                                 :timeout       => 100, # milliseconds\n      #                                 :cache_timeout => 60) # seconds\n      #                                 #:params        => {:field1 => \"a field\"} \n      # # we can see from this that the first argument is the url. the second is a set of options.\n      # # the options are all optional. The default for :method is :get. Timeout is measured in milliseconds.\n      # # cache_timeout is measured in seconds.\n\n      # # Run the request via Hydra.\n      # hydra = Typhoeus::Hydra.new\n      # hydra.queue(request)\n      # hydra.run\n\n      # # the response object will be set after the request is run\n      # response = request.response\n      # response.code    # http status code\n      # response.time    # time in seconds the request took\n      # response.headers # the http headers\n      # response.headers_hash # http headers put into a hash\n      \n      #@json_repsonse = request.response\n    end\n\n\n  end\nend",
+			"file": "db/migrate/20120730021545_rename_appelation_to_appellation.rb",
+			"settings":
+			{
+				"buffer_size": 129,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20120607035757_add_index_to_appelation_and_region.rb",
+			"settings":
+			{
+				"buffer_size": 85,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20120730024017_rename_appellation_fields.rb",
+			"settings":
+			{
+				"buffer_size": 141,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/models/wine_spec.rb",
+			"settings":
+			{
+				"buffer_size": 2668,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/migrate/20120730024542_renaming_appelation_ref_fields.rb",
+			"settings":
+			{
+				"buffer_size": 138,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/models/appellation_spec.rb",
+			"settings":
+			{
+				"buffer_size": 492,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/lib/wine_api_downloader/downloader_spec.rb",
+			"settings":
+			{
+				"buffer_size": 2388,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "doc/api controller notes",
+			"settings":
+			{
+				"buffer_size": 855,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/wine_api_downloader/downloader.rb",
+			"settings":
+			{
+				"buffer_size": 5816,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "lib/wine_api/catalog.rb",
-			"file_size": 1811,
-			"file_write_time": 1340768874000000,
 			"settings":
 			{
-				"buffer_size": 1866,
+				"buffer_size": 1934,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/product_attribute.rb",
+			"settings":
+			{
+				"buffer_size": 762,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/wine_api/category.rb",
+			"settings":
+			{
+				"buffer_size": 750,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/support/general_attribute.rb",
+			"settings":
+			{
+				"buffer_size": 1061,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/varietal.rb",
+			"settings":
+			{
+				"buffer_size": 661,
 				"line_ending": "Unix"
 			}
 		}
@@ -66,12 +175,24 @@
 		"selected_items":
 		[
 			[
-				"alignment",
-				"Preferences: Alignment File Settings – Default"
+				"install pa",
+				"Package Control: Install Package"
 			],
 			[
 				"package",
-				"Package Control: Install Package"
+				"Package Control: List Packages"
+			],
+			[
+				"package control",
+				"Package Control: Add Channel"
+			],
+			[
+				"default",
+				"Preferences: Settings - Default"
+			],
+			[
+				"alignment",
+				"Preferences: Alignment File Settings – Default"
 			],
 			[
 				"reindent",
@@ -106,7 +227,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 593.0
+		"width": 583.0
 	},
 	"console":
 	{
@@ -123,31 +244,63 @@
 	},
 	"file_history":
 	[
-		"/Users/brian/rails_projects/vinq/Gemfile",
+		"/Users/brian/rails_projects/vinq/db/schema.rb",
+		"/Users/brian/rails_projects/vinq/app/models/appellation.rb",
+		"/Users/brian/rails_projects/vinq/app/models/region.rb",
+		"/Users/brian/rails_projects/vinq/app/models/area.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/appellation_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/spec_helper.rb",
+		"/Users/brian/rails_projects/vinq/spec/lib/wine_api/category_spec.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120609225853_create_wines_product_attributes_join_table.rb",
+		"/Users/brian/rails_projects/vinq/app/models/varietal.rb",
 		"/Users/brian/rails_projects/vinq/spec/lib/wine_api/catalog_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/geolocation_spec.rb",
+		"/Users/brian/rails_projects/vinq/vinq.sublime-workspace",
+		"/Users/brian/rails_projects/vinq/app/models/appelation.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/appelation_spec.rb",
+		"/Users/brian/rails_projects/vinq/app/models/wine.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605004531_create_regions.rb",
+		"/Users/brian/rails_projects/vinq/spec/factories.rb",
+		"/Users/brian/rails_projects/vinq/spec/lib/wine_api_downloader/downloader_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/wine_spec.rb",
+		"/Users/brian/rails_projects/vinq/syncmaster_vinq.sublime-workspace",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605004736_create_appelations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606035807_add_appelation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606051718_delete_appelation_id_from.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120606052004_add_region_id_to_appelations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120607035757_add_index_to_appelation_and_region.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120730021545_rename_appelation_to_appellation.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/product_attribute_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/varietal_spec.rb",
+		"/Users/brian/rails_projects/vinq/doc/valid_wine_api_category.json",
+		"/Users/brian/rails_projects/vinq/doc/valid_json_wine_api.json",
+		"/Users/brian/rails_projects/vinq/app/models/product_attribute.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120715233802_remove_type_from_wines.rb",
+		"/Users/brian/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/brian/rails_projects/vinq/spec/support/general_attribute.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120715233429_remove_type_from_wines.rb",
+		"/Users/brian/rails_projects/vinq/spec/requests/user_pages_spec.rb",
+		"/Users/brian/rails_projects/vinq/spec/models/user_spec.rb",
+		"/Users/brian/rails_projects/vinq/Gemfile",
+		"/Users/brian/rails_projects/vinq/fixtures/vcr_cassettes/wine_api_downloader_get_products.json",
+		"/Users/brian/rails_projects/vinq/fixtures/vcr_cassettes/wine_api_downloader_get_products.yml",
+		"/Users/brian/rails_projects/vinq/lib/wine_api/hash.rb",
+		"/Users/brian/rails_projects/vinq/lib/wine_api/category.rb",
+		"/Users/brian/rails_projects/vinq/vinq.env",
+		"/Users/brian/rails_projects/vinq/doc/api controller notes",
+		"/Users/brian/rails_projects/vinq/Guardfile",
 		"/Users/brian/rails_projects/vinq/spec/models/area_spec.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608044415_remove_region_id_from_areas.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608044329_delete_region_id_from_areas.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120608043710_add_area_id_to_regions.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606035807_add_appellation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606051718_delete_appellation_id_from.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120606052004_add_region_id_to_appellations.rb",
 		"/Users/brian/rails_projects/vinq/Rakefile",
-		"/Users/brian/rails_projects/vinq/spec/factories.rb",
-		"/Users/brian/rails_projects/vinq/spec/models/wine_spec.rb",
 		"/Users/brian/Documents/valid_json_wine_api.json",
-		"/Users/brian/rails_projects/vinq/spec/models/appellation_spec.rb",
 		"/Users/brian/rails_projects/vinq/spec/models/region_spec.rb",
-		"/Users/brian/rails_projects/vinq/app/models/region.rb",
-		"/Users/brian/rails_projects/vinq/app/models/appellation.rb",
-		"/Users/brian/rails_projects/vinq/app/models/wine.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120605004550_create_areas.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605004531_create_regions.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605004736_create_appellations.rb",
 		"/Users/brian/rails_projects/vinq/db/migrate/20120531040825_create_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605002816_add_appellation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120605002357_add_appellation_to_wines.rb",
-		"/Users/brian/rails_projects/vinq/db/migrate/20120604234455_create_appellations.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605002816_add_appelation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120605002357_add_appelation_to_wines.rb",
+		"/Users/brian/rails_projects/vinq/db/migrate/20120604234455_create_appelations.rb",
 		"/Users/brian/rails_projects/vinq.bak/app/models/user.rb",
 		"/Users/brian/rails_projects/vinq/.rvmrc",
 		"/Users/brian/rails_projects/vinq.bak/Gemfile",
@@ -155,17 +308,12 @@
 		"/Users/brian/rails_projects/vinq/app/helpers/application_helper.rb",
 		"/Users/brian/rails_projects/vinq/app/views/layouts/_header.html.erb",
 		"/Users/brian/rails_projects/vinq/config/routes.rb",
-		"/Users/brian/rails_projects/vinq/spec/spec_helper.rb",
 		"/Users/brian/rails_projects/vinq/app/controllers/sessions_controller.rb",
 		"/Users/brian/rails_projects/vinq/spec/controllers/sessions_controller_spec.rb",
-		"/Users/brian/rails_projects/vinq/spec/models/user_spec.rb",
-		"/Users/brian/rails_projects/vinq/spec/requests/user_pages_spec.rb",
 		"/Users/brian/rails_projects/vinq/spec/controllers/users_controller_spec.rb",
 		"/Users/brian/rails_projects/vinq/app/models/user.rb",
 		"/Users/brian/rails_projects/vinq/.rspec",
-		"/Users/brian/rails_projects/vinq/Guardfile",
 		"/Users/brian/rails_projects/vinq/spec/views/rails/g.html.erb_spec.rb",
-		"/Users/brian/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/brian/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/x86_64-darwin11.2.0/psych.bundle",
 		"/Users/brian/rails_projects/sample_app/Guardfile",
 		"/Users/brian/rails_projects/sample_app/Gemfile",
@@ -219,6 +367,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/brian/rails_projects/vinq"
 		]
 	},
 	"find_state":
@@ -226,8 +375,38 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"RenameAppelationToAppellation",
+			"Appelation",
+			"appelation",
+			"Appelation",
+			"appelation",
+			"varietal",
+			"Varietal",
+			"Varietal\n                #                        name: product.Varietal.WineType.Name,\n                #                         url: product.Varietal.WineType.Url)",
+			"               # varietal.create_winetype(id: product.Varietal.WineType.Id,\n                #                        name: product.Varietal.WineType.Name,\n                #                         url: product.Varietal.WineType.Url)",
+			"    \n",
+			"vineyard",
+			"binding.pry",
+			"logging",
+			"binding.pry",
+			"year",
+			"page_limit",
+			"varietal",
+			"quit",
+			"vintage",
+			"type",
+			"select",
+			"api_key",
+			"params[:api",
+			"params",
+			"@response should",
+			"wine_api",
+			"!",
+			"490",
+			"contrast",
+			"brightness",
 			"region.",
-			"appellation",
+			"appelation",
 			"https",
 			"wine.",
 			":type => String",
@@ -243,7 +422,7 @@
 			"field    ",
 			"^\\s",
 			"=\\s.+",
-			"   result          = @page.search(\"//div[@class='data']\")\n    ttb_id          = result[1].text.strip\n    type            = result[3].text.strip\n    origin          = result[4].text.strip\n    permit          = result[5].text.strip\n    address_field   = result[6].text.strip\n    #company         = address_field.match('^(.+)')[1]\n    #street_address  = address_field.match('^(.+)')[2]\n    #city            = address_field.match('^(.+)')[3]\n    #state, zip      = address_field.match('^(.+)')[4].split\n    brand           = result[8].text.strip\n    fanciful_name   = result[10].text.strip\n    email           = result[11].text.strip\n    varietals       = result[12].text.strip\n    net_contents    = result[17].text.strip\n    alcohol_percent = result[18].text.strip\n    appellation      = result[19].text.strip\n    vintage         = result[21].text.strip\n    phone           = result[21].text.strip\n    fax             = result[22].text.strip\n    other_wording   = result[23].text.strip.gsub('19. SHOW ANY WORDING (a) APPEARING ON MATERIALS FIRMLY AFFIXED TO THE CONTAINER (e.g., caps, celoseals, corks, etc.) OTHER THAN THE LABLES AFFIXED BELOW, OR (b) BLOWN, BRANDED OR EMBOSSED ON THE CONTAINER (e.g., net contents etc.).  THIS WORDING MUST BE NOTED HERE EVEN IF IT DUPLICATES PORTIONS OF THE LABELS AFFIXED BELOW.  ALSO, PROVIDE TRANSLATIONS OF FOREIGN LANGUAGE TEXT APPEARING ON LABELS.','')\n    completion_date = result[28].text.strip\n    approved        = result[31].text.include?('APPROVED')\n    designation     = result[32].text.strip\n   ",
+			"   result          = @page.search(\"//div[@class='data']\")\n    ttb_id          = result[1].text.strip\n    type            = result[3].text.strip\n    origin          = result[4].text.strip\n    permit          = result[5].text.strip\n    address_field   = result[6].text.strip\n    #company         = address_field.match('^(.+)')[1]\n    #street_address  = address_field.match('^(.+)')[2]\n    #city            = address_field.match('^(.+)')[3]\n    #state, zip      = address_field.match('^(.+)')[4].split\n    brand           = result[8].text.strip\n    fanciful_name   = result[10].text.strip\n    email           = result[11].text.strip\n    varietals       = result[12].text.strip\n    net_contents    = result[17].text.strip\n    alcohol_percent = result[18].text.strip\n    appelation      = result[19].text.strip\n    vintage         = result[21].text.strip\n    phone           = result[21].text.strip\n    fax             = result[22].text.strip\n    other_wording   = result[23].text.strip.gsub('19. SHOW ANY WORDING (a) APPEARING ON MATERIALS FIRMLY AFFIXED TO THE CONTAINER (e.g., caps, celoseals, corks, etc.) OTHER THAN THE LABLES AFFIXED BELOW, OR (b) BLOWN, BRANDED OR EMBOSSED ON THE CONTAINER (e.g., net contents etc.).  THIS WORDING MUST BE NOTED HERE EVEN IF IT DUPLICATES PORTIONS OF THE LABELS AFFIXED BELOW.  ALSO, PROVIDE TRANSLATIONS OF FOREIGN LANGUAGE TEXT APPEARING ON LABELS.','')\n    completion_date = result[28].text.strip\n    approved        = result[31].text.include?('APPROVED')\n    designation     = result[32].text.strip\n   ",
 			"=\\s$+",
 			"scraper",
 			"expect",
@@ -257,9 +436,17 @@
 		"regex": false,
 		"replace_history":
 		[
-			"appellation.",
+			"Appellation",
+			"appellation",
+			"Appellation",
+			"appellation",
+			"appelation",
+			"varietal",
+			"Appelation",
+			"catalog",
+			"appelation.",
 			"region",
-			"appellation.",
+			"appelation.",
 			"type: String",
 			"user",
 			"last_name",
@@ -277,29 +464,29 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "spec/lib/wine_api/catalog_spec.rb",
+					"file": "app/models/wine.rb",
 					"settings":
 					{
-						"buffer_size": 389,
+						"buffer_size": 1550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								311,
-								311
+								345,
+								345
 							]
 						],
 						"settings":
@@ -316,18 +503,204 @@
 				},
 				{
 					"buffer": 1,
-					"file": "Gemfile",
+					"file": "spec/factories.rb",
 					"settings":
 					{
-						"buffer_size": 995,
+						"buffer_size": 1779,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								806,
-								806
+								554,
+								554
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "db/migrate/20120730021545_rename_appelation_to_appellation.rb",
+					"settings":
+					{
+						"buffer_size": 129,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16,
+								16
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "db/migrate/20120607035757_add_index_to_appelation_and_region.rb",
+					"settings":
+					{
+						"buffer_size": 85,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "db/migrate/20120730024017_rename_appellation_fields.rb",
+					"settings":
+					{
+						"buffer_size": 141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								130,
+								130
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "spec/models/wine_spec.rb",
+					"settings":
+					{
+						"buffer_size": 2668,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "db/migrate/20120730024542_renaming_appelation_ref_fields.rb",
+					"settings":
+					{
+						"buffer_size": 138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								138,
+								138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "spec/models/appellation_spec.rb",
+					"settings":
+					{
+						"buffer_size": 492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "spec/lib/wine_api_downloader/downloader_spec.rb",
+					"settings":
+					{
+						"buffer_size": 2388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								156,
+								156
 							]
 						],
 						"settings":
@@ -345,30 +718,224 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 2,
-					"file": "lib/wine_api/catalog.rb",
+					"buffer": 9,
+					"file": "doc/api controller notes",
 					"settings":
 					{
-						"buffer_size": 1866,
+						"buffer_size": 855,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								340,
-								340
+								544,
+								544
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "lib/wine_api_downloader/downloader.rb",
+					"settings":
+					{
+						"buffer_size": 5816,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5497,
+								5497
+							]
+						],
+						"settings":
+						{
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "lib/wine_api/catalog.rb",
+					"settings":
+					{
+						"buffer_size": 1934,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1544,
+								1544
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 6,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "app/models/product_attribute.rb",
+					"settings":
+					{
+						"buffer_size": 762,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								469,
+								469
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "lib/wine_api/category.rb",
+					"settings":
+					{
+						"buffer_size": 750,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								750,
+								750
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "spec/support/general_attribute.rb",
+					"settings":
+					{
+						"buffer_size": 1061,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "app/models/wine.rb",
+					"settings":
+					{
+						"buffer_size": 1550,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "app/models/varietal.rb",
+					"settings":
+					{
+						"buffer_size": 661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								291,
+								291
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -407,7 +974,7 @@
 		"cols":
 		[
 			0.0,
-			0.519095132927,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -428,20 +995,216 @@
 		"selected_items":
 		[
 			[
-				"gem",
+				"downloaders",
+				"spec/lib/wine_api_downloader/downloader_spec.rb"
+			],
+			[
+				"factories",
+				"spec/factories.rb"
+			],
+			[
+				"appelation_spec",
+				"spec/models/appellation_spec.rb"
+			],
+			[
+				"schema.rb",
+				"db/schema.rb"
+			],
+			[
+				"renaming",
+				"db/migrate/20120730024542_renaming_appelation_ref_fields.rb"
+			],
+			[
+				"wine_spec",
+				"spec/models/wine_spec.rb"
+			],
+			[
+				"factories.rb",
+				"spec/factories.rb"
+			],
+			[
+				"renae",
+				"db/migrate/20120730024017_rename_appellation_fields.rb"
+			],
+			[
+				"add_index",
+				"db/migrate/20120607035757_add_index_to_appelation_and_region.rb"
+			],
+			[
+				"area",
+				"app/models/area.rb"
+			],
+			[
+				"region",
+				"app/models/region.rb"
+			],
+			[
+				"appellation",
+				"app/models/appellation.rb"
+			],
+			[
+				"wine",
+				"app/models/wine.rb"
+			],
+			[
+				"appellation_spec",
+				"spec/models/appellation_spec.rb"
+			],
+			[
+				"rename",
+				"db/migrate/20120730021545_rename_appelation_to_appellation.rb"
+			],
+			[
+				"appelation",
+				"app/models/appelation.rb"
+			],
+			[
+				"ownload",
+				"spec/lib/wine_api_downloader/downloader_spec.rb"
+			],
+			[
+				"varietalspec",
+				"spec/models/varietal_spec.rb"
+			],
+			[
+				"downloader",
+				"spec/lib/wine_api_downloader/downloader_spec.rb"
+			],
+			[
+				"varietal",
+				"app/models/varietal.rb"
+			],
+			[
+				"winespec",
+				"spec/models/wine_spec.rb"
+			],
+			[
+				"valid",
+				"doc/valid_json_wine_api.json"
+			],
+			[
+				"productattribute",
+				"db/migrate/20120609225853_create_wines_product_attributes_join_table.rb"
+			],
+			[
+				"pas",
+				"spec/models/product_attribute_spec.rb"
+			],
+			[
+				"pa",
+				"app/models/product_attribute.rb"
+			],
+			[
+				"calid",
+				"doc/valid_json_wine_api.json"
+			],
+			[
+				"catalog",
+				"lib/wine_api/catalog.rb"
+			],
+			[
+				"spec_h",
+				"spec/spec_helper.rb"
+			],
+			[
+				"wi",
+				"app/models/wine.rb"
+			],
+			[
+				"general",
+				"spec/support/general_attribute.rb"
+			],
+			[
+				"ws",
+				"spec/models/wine_spec.rb"
+			],
+			[
+				"rtfw",
+				"db/migrate/20120715233802_remove_type_from_wines.rb"
+			],
+			[
+				"urs",
+				"spec/requests/user_pages_spec.rb"
+			],
+			[
+				"us",
+				"spec/models/user_spec.rb"
+			],
+			[
+				"gemf",
 				"Gemfile"
+			],
+			[
+				"wad",
+				"fixtures/vcr_cassettes/wine_api_downloader_get_products.json"
+			],
+			[
+				"wadgp",
+				"fixtures/vcr_cassettes/wine_api_downloader_get_products.json"
+			],
+			[
+				"spec_",
+				"spec/spec_helper.rb"
+			],
+			[
+				"categorysp",
+				"spec/lib/wine_api/category_spec.rb"
+			],
+			[
+				"catsp",
+				"spec/lib/wine_api/catalog_spec.rb"
+			],
+			[
+				"wine_api",
+				"fixtures/vcr_cassettes/wine_api_downloader_get_products.yml"
+			],
+			[
+				"factorie",
+				"spec/factories.rb"
 			],
 			[
 				"gemfile",
 				"Gemfile"
 			],
 			[
-				"catalo",
-				"lib/wine_api/catalog.rb"
+				"cate",
+				"lib/wine_api/category.rb"
 			],
 			[
-				"catalog",
+				"catasp",
 				"spec/lib/wine_api/catalog_spec.rb"
+			],
+			[
+				"cates",
+				"spec/lib/wine_api/category_spec.rb"
+			],
+			[
+				"cs",
+				"spec/lib/wine_api/catalog_spec.rb"
+			],
+			[
+				"va",
+				"doc/valid_json_wine_api.json"
+			],
+			[
+				"attribute",
+				"app/models/product_attribute.rb"
+			],
+			[
+				"downloader_spec",
+				"spec/lib/wine_api_downloader/downloader_spec.rb"
+			],
+			[
+				"guard",
+				"Guardfile"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"catalo",
+				"lib/wine_api/catalog.rb"
 			],
 			[
 				"catalog_spec",
@@ -456,10 +1219,6 @@
 				"db/migrate/20120608044329_delete_region_id_from_areas.rb"
 			],
 			[
-				"area",
-				"app/models/area.rb"
-			],
-			[
 				"add_area",
 				"db/migrate/20120608043710_add_area_id_to_regions.rb"
 			],
@@ -468,32 +1227,24 @@
 				"db/schema.rb"
 			],
 			[
-				"us",
-				"spec/models/user_spec.rb"
-			],
-			[
 				"addappe",
-				"db/migrate/20120606035807_add_appellation_to_wines.rb"
+				"db/migrate/20120606035807_add_appelation_to_wines.rb"
 			],
 			[
 				"add_ap",
-				"db/migrate/20120606052004_add_region_id_to_appellations.rb"
+				"db/migrate/20120606052004_add_region_id_to_appelations.rb"
 			],
 			[
 				"add",
-				"db/migrate/20120606035807_add_appellation_to_wines.rb"
+				"db/migrate/20120606035807_add_appelation_to_wines.rb"
 			],
 			[
 				"delete",
-				"db/migrate/20120606051718_delete_appellation_id_from.rb"
+				"db/migrate/20120606051718_delete_appelation_id_from.rb"
 			],
 			[
 				"app",
-				"app/models/appellation.rb"
-			],
-			[
-				"region",
-				"app/models/region.rb"
+				"app/models/appelation.rb"
 			],
 			[
 				"wine.rb",
@@ -508,10 +1259,6 @@
 				"spec/models/region_spec.rb"
 			],
 			[
-				"ws",
-				"spec/models/wine_spec.rb"
-			],
-			[
 				"rakefi",
 				"Rakefile"
 			],
@@ -521,15 +1268,11 @@
 			],
 			[
 				"add_app",
-				"db/migrate/20120605002816_add_appellation_to_wines.rb"
+				"db/migrate/20120605002816_add_appelation_to_wines.rb"
 			],
 			[
 				"appelatio",
-				"db/migrate/20120604234455_create_appellations.rb"
-			],
-			[
-				"wine",
-				"app/models/wine.rb"
+				"db/migrate/20120604234455_create_appelations.rb"
 			],
 			[
 				"w",
@@ -578,10 +1321,6 @@
 			[
 				"uh",
 				"app/helpers/users_helper.rb"
-			],
-			[
-				"spec_",
-				"spec/spec_helper.rb"
 			],
 			[
 				"routes.rb",

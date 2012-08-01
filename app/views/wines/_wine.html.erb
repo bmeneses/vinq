@@ -1,0 +1,8 @@
+<li>
+	<%= image_tag(wine.label(:thumb), alt: wine.name, class: "wine-label-small") %>
+	<%= link_to wine.name, wine %>
+	<span class="wine-descriptors">
+		<%= wine.varietal.name %> | <%= wine.appellation.name %>
+	</span>
+	
+</li>

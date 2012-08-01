@@ -1,0 +1,10 @@
+<% provide(:title, 'Wine Listing') %>
+<h1>Wine Listing</h1>
+
+<%= will_paginate %>
+
+<ul	class="wines">
+	<%= render @wines %>
+</ul>
+
+<%= will_paginate %>

@@ -14,7 +14,7 @@
 
 class Region < ActiveRecord::Base
 
-  attr_accessible :region_id, :name, :url
+  attr_accessible :region_id, :name, :url, :id
 
   validates :region_id, :name, presence: true, uniqueness: true
 

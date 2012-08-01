@@ -86,12 +86,6 @@ module WineApiDownloader
                 wine.product_attributes << a
               end
 
-              # if product.Id == 102307
-              #   binding.pry
-              # end
-
-
-            
               unless (product.Varietal == nil)
                 varietal = Varietal.find_by_id(product.Varietal.Id)
                 unless (varietal)
@@ -105,7 +99,6 @@ module WineApiDownloader
                 varietal.save
                 wine.save                
               end
-
 
 
               unless (product.Appellation == nil)

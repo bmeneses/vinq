@@ -14,7 +14,7 @@
 
 class Appellation < ActiveRecord::Base
 
-  attr_accessible :appellation_id, :name, :url
+  attr_accessible :appellation_id, :name, :url, :id
 
   validates :appellation_id, :name, presence: true, uniqueness: true
   
