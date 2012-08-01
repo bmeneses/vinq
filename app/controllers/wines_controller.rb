@@ -1,4 +1,3 @@
-require 'pry'
 class WinesController < ApplicationController
 
  def index

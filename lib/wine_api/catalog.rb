@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 
 module WineApi
   class Catalog
