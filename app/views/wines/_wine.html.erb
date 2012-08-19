@@ -1,8 +1,12 @@
-<li>
-	<%= image_tag(wine.label(:thumb), alt: wine.name, class: "wine-label-small") %>
-	<%= link_to wine.name, wine %>
-	<span class="wine-descriptors">
-		<%= wine.varietal.name %> | <%= wine.appellation.name %>
+<li class="row">
+	<span class="span1">
+		<%= image_tag(wine.label(:thumb), alt: wine.name, class: "wine-label-small") %>
 	</span>
+	<%= link_to wine.name, wine %>
+	<div>
+		<%= wine.varietal.name unless wine.varietal.name.nil? %> | 
+		<%= wine.appellation.name unless wine.appellation.name.nil? %>
+	</div>
 	
 </li>
+3516011613
