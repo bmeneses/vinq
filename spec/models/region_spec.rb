@@ -3,7 +3,6 @@
 # Table name: regions
 #
 #  id         :integer         not null, primary key
-#  region_id  :integer
 #  name       :string(255)
 #  url        :string(255)
 #  created_at :datetime        not null

@@ -4,9 +4,9 @@
 	</span>
 	<%= link_to wine.name, wine %>
 	<div>
+		<% puts "bad wine id: #{wine.id}" if wine.varietal == nil %>
 		<%= wine.varietal.name unless wine.varietal.name.nil? %> | 
 		<%= wine.appellation.name unless wine.appellation.name.nil? %>
 	</div>
 	
 </li>
-3516011613

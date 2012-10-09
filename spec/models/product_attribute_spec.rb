@@ -2,13 +2,12 @@
 #
 # Table name: product_attributes
 #
-#  id                   :integer         not null, primary key
-#  product_attribute_id :integer
-#  wine_id              :integer
-#  name                 :string(255)
-#  url                  :string(255)
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
+#  id         :integer         not null, primary key
+#  wine_id    :integer
+#  name       :string(255)
+#  url        :string(255)
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 
 require 'spec_helper'

@@ -1,0 +1,22 @@
+require File.dirname(__FILE__) + "/../../../app/models/wine"
+require File.dirname(__FILE__) + "/../../../app/models/product_attribute"
+require 'spec_helper'
+
+
+describe WineApiDownloader::ProductDownloader do 
+
+	VCR.configure do |c|
+	  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+	  c.hook_into :fakeweb
+	  c.default_cassette_options = { 
+	    :re_record_interval => 1.year, 
+	    :serialize_with => :json
+	  }
+	end
+
+	let(:downloader) { WineApiDownloader::ProductDownloader.new }
+
+	subject { downloader }
+
+end
+Produc

@@ -1,0 +1,5 @@
+TODO:
+
+downloader tests - need to be more deterministic, there's no real way of doing an accurate count
+
+move validations & callbacks to shared

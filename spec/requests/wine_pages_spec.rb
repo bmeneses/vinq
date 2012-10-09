@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 # describe "WinePages" do
 #   describe "GET /wine_pages" do
@@ -14,12 +15,20 @@ describe "wine pages" do
 	subject { page }
 
 	describe "index" do
-		before(:all) { 20.times { FactoryGirl.create(:wine) } }
-		after(:all)  { Wines.delete.all }
+		before(:all) do 
+			DatabaseCleaner.start
+			20.times { FactoryGirl.create(:wine_complete) }
+		end
 
-		before { visit wines_path }
+		after(:all) do
+			DatabaseCleaner.clean
+		end
 
-		it { should have_selector('title', text: 'Wine Listing') }
+
+		describe "visiting index" do
+			before { visit wines_path }
+			it { should have_selector('title', text: 'Wine Listing') }
+		end
 
 	end
 

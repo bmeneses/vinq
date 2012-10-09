@@ -1,8 +1,6 @@
 
   shared_examples_for "a general_attribute" do
 
-    klass_id = described_class.name.underscore.downcase + '_id'
-    it { should respond_to(klass_id.to_sym) }
     it { should respond_to(:name) }
     it { should respond_to(:url) }
 
@@ -30,11 +28,11 @@
     end
 
 
-    describe "when record is not unique" do
-      before do
-        @other_attribute = subject.dup
-      end
-      specify { @other_attribute.should_not be_valid }
-    end
+    # describe "when record is not unique" do
+    #   before do
+    #     @other_attribute = subject.dup
+    #   end
+    #   specify { @other_attribute.should_not be_valid }
+    # end
 
   end

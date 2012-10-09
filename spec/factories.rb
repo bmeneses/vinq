@@ -13,7 +13,6 @@ FactoryGirl.define do
 
   factory :wine do
     sequence(:id)      { |n| n }
-    sequence(:wine_id) { |n| "#{n}" }
     sequence(:name)    { |n| "Test Wine##{n}"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
     wine_type "Cabernet Sauvignon"
@@ -31,15 +30,13 @@ FactoryGirl.define do
   end
 
   factory :appellation do
-    id 999999999999
-    appellation_id "999999999999"
-    name "Wonderful Place"
+    sequence(:id) { |n| n }
+    sequence(:name)    { |n| "Test Appellation##{n}"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
   factory :region do
     id 149591
-    region_id "149591"
     name "Bordeaux"
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
     area
@@ -47,28 +44,27 @@ FactoryGirl.define do
 
   factory :area do
     id 149591
-    area_id "149591"
     name "Barossa Valley"
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
   factory :varietal do
-    id 19591
-    varietal_id "19591"
-    name "Merlow"
+    sequence(:id) { |n| n }
+    sequence(:name)    { |n| "Test Varietal##{n}"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
 
   factory :geolocation do 
+    id 12345
     lat 112.51511
     long 32.15159
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
   factory :product_attribute do
-    product_attribute_id 1336
-    name "Cabernet Sauvignon"
+    sequence(:id) { |n| n }
+    sequence(:name)    { |n| "Test ProdAttr##{n}"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 

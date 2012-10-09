@@ -3,14 +3,13 @@
 # Table name: wines
 #
 #  id                   :integer         not null, primary key
-#  wine_id              :string(255)
 #  name                 :string(255)
 #  url                  :string(255)
-#  type                 :string(255)
+#  wine_type            :string(255)
 #  year                 :string(255)
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
-#  appellation_id        :integer
+#  appellation_id       :integer
 #  varietal_id          :integer
 #  price_min            :decimal(, )
 #  price_max            :decimal(, )
@@ -19,13 +18,14 @@
 #
 
 class Wine < ActiveRecord::Base
+  include SharedCallbacksValidations
 
-  attr_accessible :wine_id, :name, :url, :wine_type, :year, :price_min, :price_max,
+  attr_accessible :name, :url, :wine_type, :year, :price_min, :price_max,
                   :price_retail, :id
 
 
-  validates :wine_id, :name, :wine_type, presence: true
-  validates :wine_id, uniqueness: true
+  validates :name, :wine_type, presence: true
+  validates :id, uniqueness: true
   # validates :year, presence: true, 
   #                  numericality: { less_than_or_equal_to: Time.now.year }
 
@@ -52,6 +52,9 @@ class Wine < ActiveRecord::Base
     size == :thumb ? img_size = 'm' : img_size = 'l'
     "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id == nil) 
   end
+
+
+
 
 
 end

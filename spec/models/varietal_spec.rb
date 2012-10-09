@@ -3,7 +3,6 @@
 # Table name: varietals
 #
 #  id          :integer         not null, primary key
-#  varietal_id :integer
 #  name        :string(255)
 #  url         :string(255)
 #  winetype_id :integer

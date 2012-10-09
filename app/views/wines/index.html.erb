@@ -4,6 +4,7 @@
 <%= will_paginate %>
 
 <ul	class="wines">
+	<% binding.pry if @wines == nil %>
 	<%= render @wines %>
 </ul>
 

@@ -9,9 +9,10 @@ gem 'bootstrap-will_paginate', '0.0.5'
 gem 'hashie', '1.2'
 gem 'httparty'
 gem 'fakeweb'
+gem 'pg', '0.12.2'
 
 group :development do
-  gem 'sqlite3', '1.3.5'
+#  gem 'sqlite3', '1.3.5'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'pry'
   gem 'foreman'
@@ -47,6 +48,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
   gem 'thin'
 end
