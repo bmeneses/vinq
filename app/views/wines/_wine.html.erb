@@ -1,12 +1,14 @@
-<li class="row">
-	<span class="span1">
-		<%= image_tag(wine.label(:thumb), alt: wine.name, class: "wine-label-small") %>
+<li class="wine_row">
+	<span class="span2">
+		<%= image_tag(wine.label(:thumb), alt: wine.name, class: 'wine-label-small') %>
 	</span>
 	<%= link_to wine.name, wine %>
-	<div>
-		<% puts "bad wine id: #{wine.id}" if wine.varietal == nil %>
-		<%= wine.varietal.name unless wine.varietal.name.nil? %> | 
-		<%= wine.appellation.name unless wine.appellation.name.nil? %>
+	<div class="wine-listing">
+		<span class="wine-name">
+			<%= wine.varietal.name unless wine.varietal.nil? %> | </span>
+		<span class ="appellation-name">
+			<%= wine.appellation.nil? ? '(no appellation)' : wine.appellation.name %>
+		</span>
 	</div>
 	
 </li>

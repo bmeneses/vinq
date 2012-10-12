@@ -30,6 +30,18 @@ describe "wine pages" do
 			it { should have_selector('title', text: 'Wine Listing') }
 		end
 
+		describe "with bad wines" do 
+			describe "when appellation is nil" do	
+				before do
+					wine = Wine.first
+					wine.appellation = nil
+					wine.save
+					visit wines_path
+				end
+
+				it { should have_content('(no appellation)') }
+			end
+		end
 	end
 
 end

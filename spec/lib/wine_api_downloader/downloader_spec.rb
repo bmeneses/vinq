@@ -41,7 +41,7 @@ describe WineApiDownloader::Downloader do
 
       #todo make this match the responses from the api
       it "should have 568 items" do
-        Wine.all.count.should == 568
+        Wine.all.count.should == 569
       end
 
       describe "varietals" do
@@ -63,8 +63,8 @@ describe WineApiDownloader::Downloader do
         #   wine.appellation.region.area.should_not be_nil
         # end
 
-        it "should have 71 varietals in the db" do 
-          Appellation.all.count.should == 71
+        it "should have 73 varietals in the db" do 
+          Appellation.all.count.should == 73
         end
       end
     end

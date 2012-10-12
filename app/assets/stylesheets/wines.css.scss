@@ -1,3 +1,36 @@
 // Place all the styles related to the wines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+
+
+/* wines index */
+
+.wines {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+.wine-label-small {
+	text-align: center;
+}
+
+.wine-listing {
+  vertical-align: middle;
+}
+
+
+

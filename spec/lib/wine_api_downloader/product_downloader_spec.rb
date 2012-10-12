@@ -52,8 +52,38 @@ describe WineApiDownloader::ProductDownloader do
 	end
 
 	describe "#get_single_product" do
-		
+		before do
+			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do 
+				downloader.save_product_by_id('103159')
+			end
+		end
+
+		it "should populate wines with a single item" do
+			Wine.all.count.should == 1
+			Wine.first.id.should == 103159
+			ProductAttribute.all.count.should == 4
+			Appellation.all.count.should == 1
+			Region.all.count.should == 1
+			Area.all.count.should == 0
+		end
 	end
 
+	describe "a wine's appellation already exists" do
+		before do
+			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do 
+				downloader.save_product_by_id('103159')
+				downloader.save_product_by_id('114718')
+			end
+		end
+
+		it "should create an appellation for the first wine" do
+			Wine.find_by_id(103159).appellation.should_not be nil
+		end
+
+		specify "and the second wine should have an appellation too" do
+			Wine.find_by_id(114718).appellation.should_not be nil
+		end
+
+	end
 end
 

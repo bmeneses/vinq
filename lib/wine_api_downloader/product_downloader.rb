@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + "/../../app/models/product_attribute"
 require File.dirname(__FILE__) + "/../wine_api/category"
 require File.dirname(__FILE__) + "/../wine_api/catalog"
 
+require 'pry'
+
 module WineApiDownloader
 	class ProductDownloader
 
@@ -70,6 +72,7 @@ module WineApiDownloader
 			end
 
 			def assign_appellation(product)
+
 				unless (product.Appellation == nil)	
 					appellation = Appellation.find_by_id(product.Appellation.Id)
 					unless (appellation)
@@ -79,11 +82,14 @@ module WineApiDownloader
 						 url: product.Appellation.Url)
 
 						assign_region(product)
-					
-						@wine.appellation = appellation
-						appellation.save
-						@wine.save 
+						appellation.save					
 					end
+
+					@wine.appellation = appellation
+					
+
+
+					@wine.save 
 				end
 			end
 

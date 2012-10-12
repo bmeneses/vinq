@@ -18,16 +18,11 @@ module WineApiDownloader
       params[:page_limit] == nil ? page_limit = 1 : page_limit = params[:page_limit]
       @categories = get_categories()
 
-    	# get category exclusion list from db
-    	@cat_worklist = build_category_worklist(@categories)
-    	# then for each worklist category download the products
-
       product_dl = WineApiDownloader::ProductDownloader.new
 
-    	@cat_worklist.each do |cat|
+    	@categories.each do |cat|
     		product_dl.save_category_products(cat.Id, page_limit)
     	end
-    	# then update the db for that category for only those items that don't exist
     end
 
     def get_categories
