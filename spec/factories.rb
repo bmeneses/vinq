@@ -24,7 +24,8 @@ FactoryGirl.define do
     factory :wine_complete do 
       appellation 
       varietal
-      after_create { |wine| wine.product_attributes << FactoryGirl.create(:product_attribute) }
+      after(:build) { |wine| wine.product_attributes << create_list(:product_attribute, 5) }
+      #product_attribute { FactoryGirl.create(:product_attribute)}
     end
 
   end

@@ -24,7 +24,6 @@ describe "wine pages" do
 			DatabaseCleaner.clean
 		end
 
-
 		describe "visiting index" do
 			before { visit wines_path }
 			it { should have_selector('title', text: 'Wine Listing') }

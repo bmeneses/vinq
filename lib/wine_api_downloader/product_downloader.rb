@@ -34,7 +34,16 @@ module WineApiDownloader
 					@wine = assign_wine(product)
 					assign_product_attributes(product)
 					assign_varietal(product)             
-					assign_appellation(product)		    
+					assign_appellation(product)		
+
+					begin #WTF IS HAPPENING HERE? Exceptions that should be thrown
+							  # at line 72 are bubbling up here.
+						@wine.save
+					rescue ActiveRecord::RecordNotUnique
+						Rails.logger.info "Rescue at @wine.save id #{product.id}"
+					rescue
+						binding.pry														
+					end    
 				end
 			end
 
@@ -49,11 +58,24 @@ module WineApiDownloader
 			end
 
 			def assign_product_attributes(product)
+
 				product.ProductAttributes.each do |attrib|
-					a = ProductAttribute.find_or_create_by_id(id: attrib.Id)
-					a.name = attrib.Name
-					a.url = attrib.Url
-					@wine.product_attributes << a
+					new_attribute = ProductAttribute.find_by_id(attrib.Id)
+					begin
+						if new_attribute == nil
+							#begin
+								new_attribute = @wine.product_attributes.create(id: attrib.Id,
+																															 name: attrib.Name,																															 
+																															 url: attrib.Url)
+						else
+							@wine.product_attributes << new_attribute
+						end
+					rescue ActiveRecord::RecordNotUnique
+						
+						Rails.logger.info "ProductDownloader: AttributeId id #{attrib.Id} did not " +
+															"associate with Wine id #{product.Id} (Duplicate)"
+				
+					end
 				end
 			end
 
@@ -64,10 +86,9 @@ module WineApiDownloader
 						varietal = @wine.build_varietal(id: product.Varietal.Id,
 							name: product.Varietal.Name,
 							url: product.Varietal.Url)
+							varietal.save
 					end
 					@wine.varietal = varietal
-					varietal.save
-					@wine.save  
 				end				
 			end
 
@@ -84,12 +105,7 @@ module WineApiDownloader
 						assign_region(product)
 						appellation.save					
 					end
-
 					@wine.appellation = appellation
-					
-
-
-					@wine.save 
 				end
 			end
 

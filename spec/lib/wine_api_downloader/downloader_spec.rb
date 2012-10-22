@@ -35,8 +35,8 @@ describe WineApiDownloader::Downloader do
       end
 
 
-      it "should create x items in product_attributes_wines table" do
-         ProductAttribute.all.count.should == 13
+      it "should create 454 items in product_attributes_wines table" do
+         ProductAttributesWine.all.count.should == 454 
       end
 
       #todo make this match the responses from the api
