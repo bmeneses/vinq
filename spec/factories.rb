@@ -37,10 +37,10 @@ FactoryGirl.define do
   end
 
   factory :region do
-    id 149591
-    name "Bordeaux"
+    sequence(:id) { |n| n }
+    sequence(:name)    { |n| "Test Region##{n}"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
-    area
+    #area
   end
 
   factory :area do

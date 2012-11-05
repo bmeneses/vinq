@@ -34,7 +34,7 @@ class Wine < ActiveRecord::Base
 
   belongs_to :appellation
   belongs_to :varietal
-has_many :product_attributes_wines
+  has_many :product_attributes_wines
   has_many :product_attributes, through: :product_attributes_wines 
 
   

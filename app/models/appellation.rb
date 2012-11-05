@@ -22,5 +22,6 @@ class Appellation < ActiveRecord::Base
 
   belongs_to :region
   has_one :area, through: :region
+  has_many :wines
 
 end
