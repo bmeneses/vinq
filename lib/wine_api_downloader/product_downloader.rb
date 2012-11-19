@@ -41,8 +41,6 @@ module WineApiDownloader
 						@wine.save
 					rescue ActiveRecord::RecordNotUnique
 						Rails.logger.info "Rescue at @wine.save id #{product.id}"
-					rescue
-						binding.pry														
 					end    
 				end
 			end

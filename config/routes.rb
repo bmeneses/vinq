@@ -1,5 +1,7 @@
 SampleApp::Application.routes.draw do
   
+
+  get 'wines/appellation/:id' => 'wines#index'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :wines

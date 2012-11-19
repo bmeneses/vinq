@@ -1,20 +1,15 @@
-Given /^I have a wine in appellation (#{CAPTURE_A_WORD}) and region (#{CAPTURE_A_WORD})$/ do |appellation, region|
-  @first_wine = FactoryGirl.create(:wine, 
+Given /^I have (?:a|another) wine in appellation (#{CAPTURE_A_WORD}) and region (#{CAPTURE_A_WORD})$/ do |appellation, region|
+  wine = FactoryGirl.create(:wine, 
   														appellation: FactoryGirl.create(:appellation, 
   																														name: appellation))
-  @first_wine.appellation.region = FactoryGirl.create(:region, name: region )
+  wine.appellation.region = FactoryGirl.create(:region, name: region )
+  wine.appellation.save
 end
 
-And /^I have another wine in appellation (#{CAPTURE_A_WORD}) and region (#{CAPTURE_A_WORD})$/ do |appellation, region|
-  @second_wine = FactoryGirl.create(:wine, 
-  														appellation: FactoryGirl.create(:appellation, 
-  																														name: appellation))
-  @second_wine.appellation.region = FactoryGirl.create(:region, name: region )
-end
-
-
-When /^I click on the (#{CAPTURE_A_WORD}) link$/ do |link_text|
-	visit wines_path
+When /^I (?:have)?\s?click(?:ed)? on the (#{CAPTURE_A_WORD}) (?:link|filter)$/ do |link_text|
+  steps %{
+      When I visit the wines page
+          }
   click_link link_text
 end
 

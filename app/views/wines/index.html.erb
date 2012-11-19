@@ -7,13 +7,17 @@
 
 	<aside class="span4">
 		<section>
+			<% if @filters.any? %>
+			  <h4>Filters</h4>
+			  	<%= link_to "Clear All Filters", wines_path %>
+			<% end %>
 			<h3>Appellations</h3>
 			<% if @appellations.any? %>
 				<ul class="category-filter">
 					<% @appellations.each do |appellation| %>
 					 <li>
 					 		<%= link_to appellation.name, 
-					 			"wines?filter=Y&appellation=#{appellation.id.to_s}" %>
+					 			"wines?filter=appellation&appellation=#{appellation.id.to_s}" %>
 					 </li>
 					<% end %>
 				</ul>

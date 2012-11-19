@@ -13,6 +13,8 @@
 
 class Region < ActiveRecord::Base
 
+	default_scope order("name ASC")
+
   attr_accessible :region_id, :name, :url, :id
 
   validates :name, presence: true

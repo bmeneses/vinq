@@ -13,6 +13,8 @@
 
 class Appellation < ActiveRecord::Base
 
+	default_scope order("name ASC")
+
   attr_accessible :name, :url, :id
 
   validates :name, presence: true, uniqueness: true
