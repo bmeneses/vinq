@@ -3,34 +3,38 @@
 
 
 
-<div class="row">
+<div class="row clearfix">
 
 	<aside class="span4">
 		<section>
-			<% if @filters.any? %>
+			<h3>Filters</h3>
+			<% if @filter_conditions.any? %>
 			  <h4>Filters</h4>
 			  	<%= link_to "Clear All Filters", wines_path %>
-			<% end %>
-			<h3>Appellations</h3>
-			<% if @appellations.any? %>
-				<ul class="category-filter">
-					<% @appellations.each do |appellation| %>
-					 <li>
-					 		<%= link_to appellation.name, 
-					 			"wines?filter=appellation&appellation=#{appellation.id.to_s}" %>
-					 </li>
+			  	<ul class="category-filter">
+			  	<% @filter_conditions.each do |key, val| %>
+			  			<li>
+			  				<%= cap_and_pluralize_sym(key) %>
+			  				<%= link_to "(clear)", clear_filter_path(key.to_s) %>
+			  			</li>
 					<% end %>
 				</ul>
 			<% end %>
-		</section>
-		<section>
-			<h3>Regions</h3>
-			<% if @regions.any? %>
-				<ul class="category-filter">
-					<% @regions.each do |region| %>
-					 <li><%= link_to region.name, "#" %></li>
-					<% end %>
-				</ul>
+			<% WINE_FILTER_TYPES.each do |type| %>
+				<% if @filter_conditions[type].nil? &&
+							!@attributes[type].nil? && 
+							@attributes[type].any? %>
+				<div>
+					<h3><%= cap_and_pluralize_sym(type) %></h3>
+						<ul class="category-filter">
+							<% @attributes[type].each do |attribute| %>
+							 <li>
+							 		<%= link_to attribute.name, polymorphic_path(attribute) %>
+							 </li>
+							<% end %>
+						</ul>
+				</div>
+				<% end %>
 			<% end %>
 		</section>
 	</aside>
@@ -40,10 +44,10 @@
 	<%= will_paginate %>
 	<div class="span8">
 		<ul	class="wines">
-			<% binding.pry if @wines == nil %>
-			<%= render @wines %>
+				<%= render @wines %>
 		</ul>
 
 		<%= will_paginate %>
 	</div>
 </div>
+<%= debug session %>

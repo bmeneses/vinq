@@ -13,7 +13,7 @@ FactoryGirl.define do
 
   factory :wine do
     sequence(:id)      { |n| n }
-    sequence(:name)    { |n| "Test Wine##{n}"}
+    sequence(:name)    { |n| "#{n}-TestWine"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
     wine_type "Cabernet Sauvignon"
     year "1996"
@@ -32,13 +32,13 @@ FactoryGirl.define do
 
   factory :appellation do
     sequence(:id) { |n| n }
-    sequence(:name)    { |n| "Test Appellation##{n}"}
+    sequence(:name)    { |n| "#{n}-TestAppellation"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
   factory :region do
     sequence(:id) { |n| n }
-    sequence(:name)    { |n| "Test Region##{n}"}
+    sequence(:name)    { |n| "#{n}-TestRegion"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
     #area
   end
@@ -51,7 +51,7 @@ FactoryGirl.define do
 
   factory :varietal do
     sequence(:id) { |n| n }
-    sequence(:name)    { |n| "Test Varietal##{n}"}
+    sequence(:name)    { |n| "#{n}-TestVarietal"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 
@@ -65,7 +65,7 @@ FactoryGirl.define do
 
   factory :product_attribute do
     sequence(:id) { |n| n }
-    sequence(:name)    { |n| "Test ProdAttr##{n}"}
+    sequence(:name)    { |n| "##{n}-TestProdAttr"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
   end
 

@@ -21,11 +21,14 @@ Scenario Outline: appellation/region filtering
 	Given I have a wine in appellation <appellation_1> and region <region_1>
 	And I have another wine in appellation <appellation_2> and region <region_2>
 	When I visit the wines page 
-	When I click on the <appellation_1> link
+	And I click on the <appellation_1> link
 	Then I should not see wines from <appellation_2>
-	And I should see a link for <appellation_1>
+	And I should not see a link for <appellation_1>
+	And I should not see a link for <region_1>
 	And I should not see a link for <appellation_2>
-	And I should see a link for "Clear All Filters"
+	And I should not see a link for <region_2>
+	And I should see a link for Clear All Filters
+	And I should see a link for Appellation
 
 	Examples:
 	| appellation_1 | region_1 | appellation_2 | region_2 |	
@@ -34,8 +37,9 @@ Scenario Outline: appellation/region filtering
 Scenario Outline: cancel all filters
 	Given I have a wine in appellation <appellation_1> and region <region_1>
 	And I have another wine in appellation <appellation_2> and region <region_2>
+	When I visit the wines page 
 	And I have clicked on the <appellation_1> filter
-	When I click on the "Clear All Filters" link
+	And I click on the Clear All Filters link
 	Then I should see a link for <region_2>
 	And I should see a link for <appellation_2>
 
@@ -43,11 +47,14 @@ Scenario Outline: cancel all filters
 	| appellation_1 | region_1 | appellation_2 | region_2 |	
 	| Oakville			| Napa		 | St. Emilion   | Bordeaux |
 
+
+
 	Scenario Outline: cancel Appellation filter
 		Given I have a wine in appellation <appellation_1> and region <region_1>
 		And I have another wine in appellation <appellation_2> and region <region_2>
+		When I visit the wines page 
 		And I have clicked on the <appellation_1> filter
-		When I click on the "X" link
+		And I click on the "X" link
 		Then I should see a link for <region_2>
 		And I should see a link for <appellation_2>
 

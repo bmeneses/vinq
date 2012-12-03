@@ -1,25 +1,85 @@
-class WinesController < ApplicationController
+class WinesController < ApplicationController	
+	require 'pry'
+	helper_method :cap_and_pluralize_sym
 
- def index
 
- 		@filters ||= []
 
- 		if params[:filter] == nil
-    	@wines = Wine.paginate(page: params[:page])
-    	@appellations = Appellation.all
-    	@regions = Region.all
-    elsif params[:filter] == "appellation"
-    	@filters << "appellation"
-    	@wines = Wine.where(appellation_id: params[:appellation]).paginate(page: params[:page])
-    	@appellations = filter_attribute("appellation")
-    	@regions = filter_attribute("region")
-    end
- end
+	::WINE_FILTER_TYPES = [:region, :appellation]
 
- private
+	def index
+		setup_index_filters
+		add_index_filters_from_params
+		@filter_conditions = active_filters
+		@wines = query_wines_with_index_filter
+		filter_attributes_on_wines
+		@wines = @wines.paginate(page: params[:page])
+	end
 
- 	def filter_attribute(attribute)
- 		@wines.map{ |wine| wine.send(attribute)}.uniq
+	def cap_and_pluralize_sym(sym)
+		sym.to_s.capitalize.pluralize
+	end
+
+	def clear_filter
+		filter_to_clear = params[:filter].to_sym
+		session[:wine_index_filters][filter_to_clear] = nil
+	end
+
+
+
+	private
+
+	def setup_index_filters
+		session[:wine_index_filters] ||= []
+		@attributes = {}
+	end
+
+	def add_index_filters_from_params
+		WINE_FILTER_TYPES.each do |type|
+			if !(params[type] == nil)
+				session[:wine_index_filters] << { type => params[type] }
+			end
+		end
+	end
+
+	def filter_attributes_on_wines
+		WINE_FILTER_TYPES.each do |type|
+			@attributes[type] = filter_attribute(type)
+		end
+	end
+
+	def filter_attribute(attribute)
+ 		# @wines.map { |wine| wine.send(attribute) }.uniq
+ 		filtered_attributes = []
+ 		@wines.each do |wine|
+ 			this_attribute = wine.send(attribute)
+ 			unless this_attribute == nil
+ 				filtered_attributes << this_attribute
+ 			end
+ 		end
+ 		filtered_attributes.uniq.sort_by &:name
  	end
 
-end
+ 	def active_filters
+ 		conditions = session[:wine_index_filters].reduce Hash.new, :merge
+ 		conditions.inject({}) do |hash, (k,v)| 
+ 			k = (k.to_s + "_id").to_sym
+ 			hash[k] = v.to_i
+ 			hash
+ 		end
+ 	end
+
+ 	def wine_query_filter_conditions
+ 		conditions = session[:wine_index_filters].reduce Hash.new, :merge
+ 		conditions.inject({}) do |hash, (k,v)| 
+ 			k = (k.to_s + "_id").to_sym
+ 			hash[k] = v.to_i
+ 			hash
+ 		end
+ 	end
+
+ 	def query_wines_with_index_filter
+ 		Wine.where(wine_query_filter_conditions)
+ 	end
+
+
+ end

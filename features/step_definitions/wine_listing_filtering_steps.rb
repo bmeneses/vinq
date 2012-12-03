@@ -6,10 +6,8 @@ Given /^I have (?:a|another) wine in appellation (#{CAPTURE_A_WORD}) and region 
   wine.appellation.save
 end
 
+
 When /^I (?:have)?\s?click(?:ed)? on the (#{CAPTURE_A_WORD}) (?:link|filter)$/ do |link_text|
-  steps %{
-      When I visit the wines page
-          }
   click_link link_text
 end
 

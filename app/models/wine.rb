@@ -32,7 +32,7 @@ class Wine < ActiveRecord::Base
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :url, presence: true, format: VALID_URL_FORMAT
 
-  belongs_to :appellation
+  belongs_to :appellation, inverse_of: :wines
   belongs_to :varietal
   has_many :product_attributes_wines
   has_many :product_attributes, through: :product_attributes_wines 
@@ -41,7 +41,11 @@ class Wine < ActiveRecord::Base
 
   # helpers
   def region
-    appellation.region
+    if appellation.nil? || appellation.region.nil?
+      return nil
+    else
+      appellation.region
+    end
   end
 
   def area

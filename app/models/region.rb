@@ -25,4 +25,8 @@ class Region < ActiveRecord::Base
   has_many :appellations
   belongs_to :area
 
+  def to_param
+  	"#{self.id}-#{self.name.parameterize}"
+  end
+  
 end

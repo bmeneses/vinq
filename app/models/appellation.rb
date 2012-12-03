@@ -24,6 +24,13 @@ class Appellation < ActiveRecord::Base
 
   belongs_to :region
   has_one :area, through: :region
-  has_many :wines
+  has_many :wines, inverse_of: :appellation
+
+  def to_param
+  	"#{self.id}-#{self.name.parameterize}"
+  end
+
+
+
 
 end

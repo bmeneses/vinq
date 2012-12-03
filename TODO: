@@ -1,5 +1,5 @@
 TODO:
 
-downloader tests - need to be more deterministic, there's no real way of doing an accurate count
+Figure out why will_paginate only works with 30 items at a time despite setting WillPaginate.per_page
 
-move validations & callbacks to shared
+Module-ify common elments of models such as to_param, valid_url_format, etc. that make sense
