@@ -17,10 +17,10 @@
       it { should be_valid }
     end
 
-    describe "url is not the right format" do
-      before { subject.url = "http:/blah" }
-      it { should_not be_valid }
-    end
+    # describe "url is not the right format" do
+    #   before { subject.url = "http:/blah" }
+    #   it { should_not be_valid }
+    # end
 
 
     # describe "when record is not unique" do
