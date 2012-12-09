@@ -23,7 +23,6 @@ module WineApi
     def get(params)
       
       request_url = create_url(params)
-
       begin
         @json_response = HTTParty.get(URI.encode(request_url))
         rescue SocketError

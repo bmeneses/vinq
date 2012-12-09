@@ -3,20 +3,19 @@ require File.dirname(__FILE__) + "/../../app/models/product_attribute"
 require File.dirname(__FILE__) + "/../wine_api/category"
 require File.dirname(__FILE__) + "/../wine_api/catalog"
 
-require 'pry'
+WINE_API_PAGE_SIZE = 100
 
 module WineApiDownloader
 	class ProductDownloader
 
 		def save_category_products(category_id, page_limit)
 			catalog = WineApi::Catalog.new
-			offset = 1 
-			page_size = 100
+			offset = 1
 
-			until (offset >= (page_limit * page_size)) 
+			until (offset >= (page_limit * WINE_API_PAGE_SIZE)) 
 				catalog.get(categories: category_id, offset: offset)
 				save_catalog_object(catalog)
-				offset += page_size
+				offset += WINE_API_PAGE_SIZE
 			end 
 		end
 
@@ -25,7 +24,6 @@ module WineApiDownloader
 		  catalog.get(product_id: product_id)
 		  save_catalog_object(catalog)
 		end
-
 
 		private
 
@@ -99,7 +97,6 @@ module WineApiDownloader
 							id: product.Appellation.Id,
 						name: product.Appellation.Name,
 						 url: product.Appellation.Url)
-
 						assign_region(product)
 						appellation.save					
 					end
@@ -115,12 +112,10 @@ module WineApiDownloader
 							id: product.Appellation.Region.Id,
 							name: product.Appellation.Region.Name,
 							url: product.Appellation.Region.Url)                
-						
 						assign_area(product)
-
-						@wine.appellation.region = region
 						region.save
 					end
+					@wine.appellation.region = region
 				end
 			end
 
@@ -134,9 +129,9 @@ module WineApiDownloader
 							url: product.Appellation.Region.Area.Url)
 						puts product.Id
 					end
-					@wine.appellation.region.area = area
 					area.save
 				end
+				@wine.appellation.region.area = area
 			end
 
 	end
