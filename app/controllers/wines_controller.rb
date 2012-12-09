@@ -21,7 +21,12 @@ class WinesController < ApplicationController
 
 	def clear_filter
 		filter_to_clear = params[:filter].to_sym
-		session[:wine_index_filters][filter_to_clear] = nil
+		if !filter_to_clear == :all
+			session[:wine_index_filters].delete(filter_to_clear)
+		else
+			session[:wine_index_filters] = nil
+		end
+		redirect_to wines_path
 	end
 
 
@@ -29,14 +34,14 @@ class WinesController < ApplicationController
 	private
 
 	def setup_index_filters
-		session[:wine_index_filters] ||= []
+		session[:wine_index_filters] ||= {}
 		@attributes = {}
 	end
 
 	def add_index_filters_from_params
 		WINE_FILTER_TYPES.each do |type|
 			if !(params[type] == nil)
-				session[:wine_index_filters] << { type => params[type] }
+				session[:wine_index_filters].merge!(type => params[type])
 			end
 		end
 	end
@@ -60,16 +65,11 @@ class WinesController < ApplicationController
  	end
 
  	def active_filters
- 		conditions = session[:wine_index_filters].reduce Hash.new, :merge
- 		conditions.inject({}) do |hash, (k,v)| 
- 			k = (k.to_s + "_id").to_sym
- 			hash[k] = v.to_i
- 			hash
- 		end
+ 		conditions = session[:wine_index_filters]
  	end
 
  	def wine_query_filter_conditions
- 		conditions = session[:wine_index_filters].reduce Hash.new, :merge
+ 		conditions = session[:wine_index_filters]
  		conditions.inject({}) do |hash, (k,v)| 
  			k = (k.to_s + "_id").to_sym
  			hash[k] = v.to_i

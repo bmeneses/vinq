@@ -12,7 +12,7 @@ When /^I (?:have)?\s?click(?:ed)? on the (#{CAPTURE_A_WORD}) (?:link|filter)$/ d
 end
 
 Then /^I should not see wines from (#{CAPTURE_A_WORD})$/ do |attribute|
-  page.should_not have_content(attribute)
+  page.should_not have_selector('div.appellation-name', text: attribute)
 end
 
 Then /^I should not see a link for (#{CAPTURE_A_WORD})$/ do |link_text|
@@ -21,4 +21,8 @@ end
 
 Then /^I should see a link for (#{CAPTURE_A_WORD})$/ do |link_text|
   page.should have_selector('a', text: link_text)
+end
+
+Then /^I should see a link to clear the (#{CAPTURE_A_WORD}) filter$/ do |link_text|
+	page.should have_content("#{link_text} (clear)")
 end

@@ -48,6 +48,15 @@ class Wine < ActiveRecord::Base
     end
   end
 
+  def region_id
+    if appellation.nil? || appellation.region.nil?
+      return nil
+    else
+      appellation.region_id
+    end
+  end
+
+
   def area
     appellation.region.area
   end

@@ -7,10 +7,10 @@
 
 	<aside class="span4">
 		<section>
-			<h3>Filters</h3>
+
 			<% if @filter_conditions.any? %>
-			  <h4>Filters</h4>
-			  	<%= link_to "Clear All Filters", wines_path %>
+			  <h3>Filters</h3>
+			  	<%= link_to "Clear All Filters", clear_filter_path(:all) %>
 			  	<ul class="category-filter">
 			  	<% @filter_conditions.each do |key, val| %>
 			  			<li>
@@ -23,17 +23,18 @@
 			<% WINE_FILTER_TYPES.each do |type| %>
 				<% if @filter_conditions[type].nil? &&
 							!@attributes[type].nil? && 
-							@attributes[type].any? %>
-				<div>
-					<h3><%= cap_and_pluralize_sym(type) %></h3>
-						<ul class="category-filter">
-							<% @attributes[type].each do |attribute| %>
-							 <li>
-							 		<%= link_to attribute.name, polymorphic_path(attribute) %>
-							 </li>
-							<% end %>
-						</ul>
-				</div>
+							(@attributes[type].count > 1) %>
+
+					<div>
+						<h3><%= cap_and_pluralize_sym(type) %></h3>
+							<ul class="category-filter">
+								<% @attributes[type].each do |attribute| %>
+								 <li>
+								 		<%= link_to attribute.name, polymorphic_path(attribute) %>
+								 </li>
+								<% end %>
+							</ul>
+					</div>
 				<% end %>
 			<% end %>
 		</section>
