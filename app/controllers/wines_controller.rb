@@ -21,7 +21,7 @@ class WinesController < ApplicationController
 
 	def clear_filter
 		filter_to_clear = params[:filter].to_sym
-		if !filter_to_clear == :all
+		if !(filter_to_clear == :all)
 			session[:wine_index_filters].delete(filter_to_clear)
 		else
 			session[:wine_index_filters] = nil

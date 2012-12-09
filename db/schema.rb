@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021023940) do
+ActiveRecord::Schema.define(:version => 20121209025636) do
 
   create_table "appellations", :force => true do |t|
     t.string   "name"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20121021023940) do
     t.decimal  "price_max"
     t.decimal  "price_retail"
     t.integer  "product_attribute_id"
+    t.integer  "region_id"
   end
 
 end

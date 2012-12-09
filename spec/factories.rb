@@ -40,6 +40,7 @@ FactoryGirl.define do
     sequence(:id) { |n| n }
     sequence(:name)    { |n| "#{n}-TestRegion"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
+
     #area
   end
 

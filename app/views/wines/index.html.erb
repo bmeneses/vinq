@@ -15,7 +15,8 @@
 			  	<% @filter_conditions.each do |key, val| %>
 			  			<li>
 			  				<%= cap_and_pluralize_sym(key) %>
-			  				<%= link_to "(clear)", clear_filter_path(key.to_s) %>
+			  				<%= link_to "(clear)", clear_filter_path(key.to_s),
+			  						id: "#{key.to_s}-clear-link" %>
 			  			</li>
 					<% end %>
 				</ul>

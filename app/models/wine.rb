@@ -20,8 +20,10 @@
 class Wine < ActiveRecord::Base
   include SharedCallbacksValidations
 
+  before_save :add_region_id
+
   attr_accessible :name, :url, :wine_type, :year, :price_min, :price_max,
-                  :price_retail, :id
+                  :price_retail, :id, :region
 
 
   validates :name, :wine_type, presence: true
@@ -48,13 +50,13 @@ class Wine < ActiveRecord::Base
     end
   end
 
-  def region_id
-    if appellation.nil? || appellation.region.nil?
-      return nil
-    else
-      appellation.region_id
-    end
-  end
+  # def region_id
+  #   if appellation.nil? || appellation.region.nil?
+  #     return nil
+  #   else
+  #     appellation.region_id
+  #   end
+  # end
 
 
   def area
@@ -66,6 +68,17 @@ class Wine < ActiveRecord::Base
     size == :thumb ? img_size = 'm' : img_size = 'l'
     "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id == nil) 
   end
+
+  private
+
+    def add_region_id
+
+      if !appellation.nil? && !appellation.region.nil?
+        self.region_id = appellation.region.id 
+      end
+      #binding.pry if !appellation.nil?
+    end
+
 
 
 

@@ -1,4 +1,4 @@
-Feature: Wine Listing Filtering - Appellation, Region & Area
+Feature: Wine Listing Filtering - Appellation
 
 As a user I want to be able to filter using appellations so that I can view specific appellations on the main page.
 
@@ -7,6 +7,8 @@ Scenario Outline: appellation/region listing
 	And I have another wine in appellation <appellation_2> and region <region_2>
 	When I visit the wines page
 	Then I should see a link for <appellation_1>
+	And I should see wines from <appellation_1>
+	And I should see wines from <appellation_2>
 	And I should see a link for <appellation_2>
 	And I should see a link for <region_1>
 	And I should see a link for <region_2>
@@ -23,6 +25,7 @@ Scenario Outline: appellation/region filtering
 	When I visit the wines page 
 	And I click on the <appellation_1> link
 	Then I should not see wines from <appellation_2>
+	And I should see wines from <appellation_1>
 	And I should not see a link for <appellation_1>
 	And I should not see a link for <region_1>
 	And I should not see a link for <appellation_2>
@@ -33,7 +36,7 @@ Scenario Outline: appellation/region filtering
 	Examples:
 	| appellation_1 | region_1 | appellation_2 | region_2 |	
 	| Oakville			| Napa		 | St. Emilion   | Bordeaux |
-
+	
 Scenario Outline: cancel all filters
 	Given I have a wine in appellation <appellation_1> and region <region_1>
 	And I have another wine in appellation <appellation_2> and region <region_2>
@@ -54,7 +57,7 @@ Scenario Outline: cancel all filters
 		And I have another wine in appellation <appellation_2> and region <region_2>
 		When I visit the wines page 
 		And I have clicked on the <appellation_1> filter
-		And I click on the (clear) link
+		And I clear the Appellation filter
 		Then I should see a link for <region_2>
 		And I should see a link for <appellation_2>
 
