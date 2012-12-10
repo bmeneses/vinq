@@ -6,7 +6,7 @@ class WinesController < ApplicationController
 
 
 
-	::WINE_FILTER_TYPES = [:region, :appellation]
+	::WINE_FILTER_TYPES = [:region, :appellation, :varietal]
 	FIRST = 0
 
 	def index

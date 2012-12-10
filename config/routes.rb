@@ -3,6 +3,7 @@ SampleApp::Application.routes.draw do
 
   get 'wines/appellation/:appellation', to: 'wines#index', as: "appellation"
   get 'wines/region/:region', to: 'wines#index', as: "region"
+  get 'wines/varietal/:varietal', to: 'wines#index', as: "varietal"
   get 'wines/clear_filter/:filter', to: 'wines#clear_filter', as: "clear_filter"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

@@ -22,4 +22,10 @@ class Varietal < ActiveRecord::Base
 
   # has_one :winetype
 
+  # TODO: make to_param a mixin
+  def to_param
+  	"#{self.id}-#{self.name.parameterize}"
+  end
+
+
 end
