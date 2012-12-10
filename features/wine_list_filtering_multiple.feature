@@ -15,8 +15,8 @@ Scenario Outline: Region Drilldown
 	And I should not see wines from <appellation_2>
 	And I should not see wines from <appellation_3>
 	And I should see a link for Clear All Filters
-	And I should see a link to clear the Regions filter
-	And I should see a link to clear the Appellations filter
+	And I should see a link to clear the <region_1> filter
+	And I should see a link to clear the <appellation_1> filter
 
 	Examples:
 	| appellation_1 | region_1 | appellation_2 | region_2 |	appellation_3 | region_3 |
@@ -29,13 +29,13 @@ Scenario Outline: Region Drill-Up from Appellation
 	When I visit the wines page 
 	And I click on the <region_1> link
 	When I click on the <appellation_1> link
-	And I clear the Appellation filter
+	And I clear the <appellation_1> filter
 	Then I should see wines from <appellation_1>
 	And I should see wines from <appellation_3>
 	And I should not see wines from <appellation_2>
 	And I should see a link for Clear All Filters
-	And I should see a link to clear the Regions filter
-	And I should not see a link to clear the Appellations filter
+	And I should see a link to clear the <region_1> filter
+	And I should not see a link to clear the <appellation_1> filter
 
 	Examples:
 	| appellation_1 | region_1 | appellation_2 | region_2 |	appellation_3 | region_3 |

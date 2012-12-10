@@ -1,10 +1,13 @@
 class WinesController < ApplicationController	
 	require 'pry'
 	helper_method :cap_and_pluralize_sym
+	helper_method :deparameterize_filter
+	helper_method :attribute_name_from_filter
 
 
 
 	::WINE_FILTER_TYPES = [:region, :appellation]
+	FIRST = 0
 
 	def index
 		setup_index_filters
@@ -19,12 +22,17 @@ class WinesController < ApplicationController
 		sym.to_s.capitalize.pluralize
 	end
 
+	def attribute_name_from_filter(type)
+		@attributes[type][FIRST].name
+	end
+
+
 	def clear_filter
 		filter_to_clear = params[:filter].to_sym
-		if !(filter_to_clear == :all)
-			session[:wine_index_filters].delete(filter_to_clear)
+		if filter_to_clear == :all
+			clear_all_filters
 		else
-			session[:wine_index_filters] = nil
+			session[:wine_index_filters].delete(filter_to_clear)
 		end
 		redirect_to wines_path
 	end
@@ -33,6 +41,7 @@ class WinesController < ApplicationController
 
 	private
 
+	# FILTER SETTING
 	def setup_index_filters
 		session[:wine_index_filters] ||= {}
 		@attributes = {}
@@ -81,5 +90,9 @@ class WinesController < ApplicationController
  		Wine.where(wine_query_filter_conditions)
  	end
 
+ 	# FILTER CLEARING
+ 	def clear_all_filters
+ 		session[:wine_index_filters] = nil
+ 	end
 
  end

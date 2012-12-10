@@ -14,15 +14,13 @@ Given /^I have (?:a|another) wine in appellation (#{CAPTURE_A_WORD}) and region 
   else
     wine.appellation.region = Region.find_by_name(region)
   end
-
   wine.appellation.save
   wine.save
-
 end
 
 
 When /^I clear the (#{CAPTURE_A_WORD}) filter$/ do |filter|
-	click_link filter.downcase + "-clear-link"
+	click_link filter.parameterize.downcase + "-clear-link"
 end
 
 When /^I (?:have)?\s?click(?:ed)? on the (#{CAPTURE_A_WORD}) (?:link|filter)$/ do |link_text|

@@ -26,6 +26,7 @@ class Appellation < ActiveRecord::Base
   has_one :area, through: :region
   has_many :wines, inverse_of: :appellation
 
+  # TODO: make to_param a mixin
   def to_param
   	"#{self.id}-#{self.name.parameterize}"
   end

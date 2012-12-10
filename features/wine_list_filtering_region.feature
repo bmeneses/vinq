@@ -16,7 +16,7 @@ Scenario Outline: Region filtering
 	And I should not see a link for <region_1>
 	And I should not see a link for <region_2>
 	And I should see a link for Clear All Filters
-	And I should see a link to clear the Regions filter
+	And I should see a link to clear the <region_1> filter
 
 	Examples:
 	| appellation_1 | region_1 | appellation_2 | region_2 |	appellation_3 | region_3 |
@@ -44,7 +44,7 @@ Scenario Outline: cancel Region filter
 	And I have another wine in appellation <appellation_3> and region <region_3>
 	When I visit the wines page 
 	And I have clicked on the <region_1> filter
-	And I clear the Region filter
+	And I clear the <region_1> filter
 	Then I should see a link for <region_2>
 	And I should see a link for <appellation_2>
 

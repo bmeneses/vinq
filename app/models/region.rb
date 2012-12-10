@@ -25,6 +25,7 @@ class Region < ActiveRecord::Base
   has_many :appellations
   belongs_to :area
 
+  # TODO: make to_param a mixin
   def to_param
   	"#{self.id}-#{self.name.parameterize}"
   end
