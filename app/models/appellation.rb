@@ -24,7 +24,7 @@ class Appellation < ActiveRecord::Base
 
   belongs_to :region
   has_one :area, through: :region
-  has_many :wines, inverse_of: :appellation
+  has_many :wines
 
   # TODO: make to_param a mixin
   def to_param
