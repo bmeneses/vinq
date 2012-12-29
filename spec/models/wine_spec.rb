@@ -20,14 +20,14 @@
 require 'spec_helper'
 
 describe Wine do
-  
-  let(:wine) { FactoryGirl.create(:wine) } 
+
+  let(:wine) { FactoryGirl.create(:wine) }
 
   before do
 
     wine.create_appellation(name: "Barossa Valley",
                             url: "http://www.google.com")
-    
+
     wine.appellation.create_region(id: 555,
                                  name: "Australia",
                                  url: "http://www.wine.com.au/")
@@ -40,7 +40,7 @@ describe Wine do
                                   name: "Spicy",
                                   url: "http://www.google.com")
 
-  
+
   end
 
   subject { wine }
@@ -94,14 +94,14 @@ describe Wine do
     it "should return a url " do
       @label.should be =~ /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
     end
-    
+
   end
-  
+
   describe "when saving with an appellation with region" do
     before do
      @wine = FactoryGirl.create(:wine)
      @wine.create_appellation(id: 123, name: "test", url:"http://www.google.com")
-     @wine.appellation.create_region(id: 520, name: "blah", 
+     @wine.appellation.create_region(id: 520, name: "blah",
                                      url: "http://www.google.com")
      @wine.save
     end

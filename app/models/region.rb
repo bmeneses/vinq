@@ -29,5 +29,5 @@ class Region < ActiveRecord::Base
   def to_param
   	"#{self.id}-#{self.name.parameterize}"
   end
-  
+
 end

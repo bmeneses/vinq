@@ -11,18 +11,18 @@ describe WineApi::Category do
   subject { category }
 
   describe "when downloading categories" do
-    before do 
-      VCR.use_cassette('wine_api_category') do 
+    before do
+      VCR.use_cassette('wine_api_category') do
         @response = category.get
       end
     end
     specify { @response.should be_an Array }
-    # specify { @response.should include({  "Id" => 139, 
-    #                                     "Name" => "Cabernet Sauvignon", 
-    #                                      "Url" => "" }) } 
-  specify { @response.should include({  "Id" => 124, 
-                                        "Name" => "Red Wine", 
-                                         "Url" => "" }) } 
+    # specify { @response.should include({  "Id" => 139,
+    #                                     "Name" => "Cabernet Sauvignon",
+    #                                      "Url" => "" }) }
+  specify { @response.should include({  "Id" => 124,
+                                        "Name" => "Red Wine",
+                                         "Url" => "" }) }
   end
 
 

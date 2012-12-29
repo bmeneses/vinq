@@ -17,11 +17,11 @@
 # belongs to many attribute-like objects.
 class Geolocation < ActiveRecord::Base
 
-  attr_accessible :lat, :long, :url  
+  attr_accessible :lat, :long, :url
 
   validates :lat, :long, presence: true, numericality: true
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-  
+
   validates :url, presence: true, format: VALID_URL_FORMAT
 
 end

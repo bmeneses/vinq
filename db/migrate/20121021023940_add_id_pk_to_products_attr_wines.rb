@@ -5,7 +5,7 @@ class AddIdPkToProductsAttrWines < ActiveRecord::Migration
   	add_column :product_attributes_wines, :updated_at, :datetime
   	remove_index :product_attributes_wines, name: :idx_wines_product_attributes
   	add_index :product_attributes_wines,
-  						[:product_attribute_id, :wine_id], 
+  						[:product_attribute_id, :wine_id],
   						unique: true,
   						name: :idx_wines_product_attributes
   end

@@ -28,7 +28,7 @@ class Wine < ActiveRecord::Base
 
   validates :name, :wine_type, presence: true
   validates :id, uniqueness: true
-  # validates :year, presence: true, 
+  # validates :year, presence: true,
   #                  numericality: { less_than_or_equal_to: Time.now.year }
 
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
@@ -37,9 +37,9 @@ class Wine < ActiveRecord::Base
   belongs_to :appellation
   belongs_to :varietal
   has_many :product_attributes_wines, inverse_of: :wine
-  has_many :product_attributes, through: :product_attributes_wines 
+  has_many :product_attributes, through: :product_attributes_wines
 
-  
+
 
   # helpers
   def region
@@ -62,11 +62,11 @@ class Wine < ActiveRecord::Base
   def area
     appellation.region.area
   end
-  
+
   def label(size)
     @label_base_url = "http://cache.wine.com/labels"
     size == :thumb ? img_size = 'm' : img_size = 'l'
-    "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id == nil) 
+    "#{@label_base_url}/#{id}#{img_size}.jpg" unless (id == nil)
   end
 
   private
@@ -74,7 +74,7 @@ class Wine < ActiveRecord::Base
     def add_region_id
 
       if !appellation.nil? && !appellation.region.nil?
-        self.region_id = appellation.region.id 
+        self.region_id = appellation.region.id
       end
       #binding.pry if !appellation.nil?
     end

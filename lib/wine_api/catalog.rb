@@ -3,9 +3,9 @@
 module WineApi
   class Catalog
     include HTTParty
-    attr_accessor :total_products, 
-                  :product_count, 
-                  :offset, 
+    attr_accessor :total_products,
+                  :product_count,
+                  :offset,
                   :return_code,
                   :products
 
@@ -15,13 +15,13 @@ module WineApi
 
 
     # Gets Products from the Wine.com api
-    # 
+    #
     # == Parameters:
-    # 
+    #
     #
     #
     def get(params)
-      
+
       request_url = create_url(params)
       begin
         @json_response = HTTParty.get(URI.encode(request_url))
@@ -73,11 +73,11 @@ module WineApi
         params[:offset] == nil ? req_offset = 1 : req_offset = params[:offset]
         params[:limit]  == nil ? req_size = 100 : req_size = params[:limit]
         req_sort = 'justIn|descending'
-        
-        url = "filter=categories(#{params[:categories]})" + 
-              "&size=#{req_size}" + 
+
+        url = "filter=categories(#{params[:categories]})" +
+              "&size=#{req_size}" +
               "&offset=#{req_offset}" +
-              "&sort=#{req_sort}" + 
+              "&sort=#{req_sort}" +
               "&apikey=#{@api_key}"
         url
       end
@@ -99,6 +99,6 @@ module WineApi
 
   end
 
-  
+
 
 end

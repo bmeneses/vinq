@@ -1,5 +1,5 @@
 SampleApp::Application.routes.draw do
-  
+
 
   get 'wines/appellation/:appellation', to: 'wines#index', as: "appellation"
   get 'wines/region/:region', to: 'wines#index', as: "region"
@@ -16,14 +16,14 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/signup',  to: 'users#new'
-  
+
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  
 
 
-  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

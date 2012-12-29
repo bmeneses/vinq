@@ -15,7 +15,7 @@ describe "wine pages" do
 	subject { page }
 
 	describe "index" do
-		before(:all) do 
+		before(:all) do
 			DatabaseCleaner.start
 			20.times { FactoryGirl.create(:wine_complete) }
 		end
@@ -29,7 +29,7 @@ describe "wine pages" do
 			it { should have_selector('title', text: 'Wine Listing') }
 		end
 
-		describe "with bad wines" do 
+		describe "with bad wines" do
 			describe "when appellation is nil" do	
 				before do
 					wine = Wine.first

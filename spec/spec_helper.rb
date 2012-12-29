@@ -2,7 +2,7 @@ require 'rubygems'
 require 'spork'
 
 Spork.prefork do
-  # Loading more in this block will cause your tests to run faster. However, 
+  # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
   # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -42,14 +42,14 @@ Spork.prefork do
     VCR.configure do |c|
       c.cassette_library_dir = 'fixtures/vcr_cassettes'
       c.hook_into :fakeweb
-      c.default_cassette_options = { 
-          :re_record_interval => 1.year, 
+      c.default_cassette_options = {
+          :re_record_interval => 1.year,
           :serialize_with => :json
         }
     end
 
     DatabaseCleaner.strategy = :truncation
-    
+
   end
 end
 

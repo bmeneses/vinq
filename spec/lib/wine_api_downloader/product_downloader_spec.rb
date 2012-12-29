@@ -3,13 +3,13 @@ require File.dirname(__FILE__) + "/../../../app/models/product_attribute"
 require 'spec_helper'
 
 
-describe WineApiDownloader::ProductDownloader do 
+describe WineApiDownloader::ProductDownloader do
 
 	VCR.configure do |c|
 	  c.cassette_library_dir = 'fixtures/vcr_cassettes'
 	  c.hook_into :fakeweb
-	  c.default_cassette_options = { 
-	    :re_record_interval => 1.year, 
+	  c.default_cassette_options = {
+	    :re_record_interval => 1.year,
 	    :serialize_with => :json
 	  }
 	end
@@ -21,8 +21,8 @@ describe WineApiDownloader::ProductDownloader do
 	describe "#save_category_products" do
 		before(:all) do
 			DatabaseCleaner.start
-		 	VCR.use_cassette('wine_api_downloader_get_products', record: :new_episodes) do 
-		  	downloader.save_category_products('144', 1)          
+		 	VCR.use_cassette('wine_api_downloader_get_products', record: :new_episodes) do
+		  	downloader.save_category_products('144', 1)
 		  end
 		end
 
@@ -57,7 +57,7 @@ describe WineApiDownloader::ProductDownloader do
 
 	describe "#get_single_product" do
 		before do
-			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do 
+			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do
 				downloader.save_product_by_id('103159')
 			end
 		end
@@ -75,7 +75,7 @@ describe WineApiDownloader::ProductDownloader do
 	describe "a wine's appellation already exists" do
 		before(:all) do
 			DatabaseCleaner.start
-			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do 
+			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do
 				downloader.save_product_by_id('103159')
 				downloader.save_product_by_id('114718')
 			end
@@ -98,7 +98,7 @@ describe WineApiDownloader::ProductDownloader do
 	describe "a wine's region already exists" do
 		before(:all) do
 			DatabaseCleaner.start
-			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do 
+			VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do
 				downloader.save_product_by_id('120779')
 				downloader.save_product_by_id('120767')
 			end
@@ -119,13 +119,13 @@ describe WineApiDownloader::ProductDownloader do
 	end
 
 	describe "when a wine has duplicate attributes" do
-		it "should not save the attribute twice" do 
+		it "should not save the attribute twice" do
 			expect do
 				VCR.use_cassette('wine_api_prod_downloader', record: :new_episodes) do
 					downloader.save_product_by_id('119788')
 				end
 			end.to change(ProductAttributesWine, :count).from(0).to(3)
-		end 
+		end
 	end
 
 end

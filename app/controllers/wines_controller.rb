@@ -79,7 +79,7 @@ class WinesController < ApplicationController
 
  	def wine_query_filter_conditions
  		conditions = session[:wine_index_filters]
- 		conditions.inject({}) do |hash, (k,v)| 
+ 		conditions.inject({}) do |hash, (k,v)|
  			k = (k.to_s + "_id").to_sym
  			hash[k] = v.to_i
  			hash

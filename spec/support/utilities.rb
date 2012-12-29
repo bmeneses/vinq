@@ -5,7 +5,7 @@ def full_title(page_title)
   else
     "#{base_title} | #{page_title}"
   end
-  
+
 end
 
 def sign_in(user)
@@ -15,5 +15,5 @@ def sign_in(user)
   click_button "Sign in"
   #when not using capybara
   cookies[:remember_token] = user.remember_token
-  
+
 end

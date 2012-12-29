@@ -14,7 +14,7 @@ require 'spec_helper'
 
 describe Geolocation do
 
-  let(:geocode) { FactoryGirl.create(:geolocation) } 
+  let(:geocode) { FactoryGirl.create(:geolocation) }
 
   subject { geocode }
 

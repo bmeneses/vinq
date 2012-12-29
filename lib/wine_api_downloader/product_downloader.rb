@@ -12,11 +12,11 @@ module WineApiDownloader
 			catalog = WineApi::Catalog.new
 			offset = 1
 
-			until (offset >= (page_limit * WINE_API_PAGE_SIZE)) 
+			until (offset >= (page_limit * WINE_API_PAGE_SIZE))
 				catalog.get(categories: category_id, offset: offset)
 				save_catalog_object(catalog)
 				offset += WINE_API_PAGE_SIZE
-			end 
+			end
 		end
 
 		def save_product_by_id(product_id)
@@ -31,7 +31,7 @@ module WineApiDownloader
 				catalog.products.each do |product|
 					@wine = assign_wine(product)
 					assign_product_attributes(product)
-					assign_varietal(product)             
+					assign_varietal(product)
 					assign_appellation(product)		
 
 					begin #WTF IS HAPPENING HERE? Exceptions that should be thrown
@@ -39,7 +39,7 @@ module WineApiDownloader
 						@wine.save
 					rescue ActiveRecord::RecordNotUnique
 						Rails.logger.info "Rescue at @wine.save id #{product.id}"
-					end    
+					end
 				end
 			end
 
@@ -61,7 +61,7 @@ module WineApiDownloader
 						if new_attribute == nil
 							#begin
 								new_attribute = @wine.product_attributes.create(id: attrib.Id,
-																															 name: attrib.Name,																															 
+																															 name: attrib.Name,																															
 																															 url: attrib.Url)
 						else
 							@wine.product_attributes << new_attribute
@@ -111,7 +111,7 @@ module WineApiDownloader
 						region = @wine.appellation.build_region(
 							id: product.Appellation.Region.Id,
 							name: product.Appellation.Region.Name,
-							url: product.Appellation.Region.Url)                
+							url: product.Appellation.Region.Url)
 						assign_area(product)
 						region.save
 					end

@@ -4,7 +4,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "person_#{n}@example.com"}
     password  "foobar"
     password_confirmation "foobar"
-  
+
     factory :admin do
       admin true
     end
@@ -18,11 +18,11 @@ FactoryGirl.define do
     wine_type "Cabernet Sauvignon"
     year "1996"
     price_retail 19.99
-    
 
 
-    factory :wine_complete do 
-      appellation 
+
+    factory :wine_complete do
+      appellation
       varietal
       after(:build) { |wine| wine.product_attributes << create_list(:product_attribute, 5) }
       #product_attribute { FactoryGirl.create(:product_attribute)}
@@ -57,7 +57,7 @@ FactoryGirl.define do
   end
 
 
-  factory :geolocation do 
+  factory :geolocation do
     id 12345
     lat 112.51511
     long 32.15159
@@ -71,6 +71,6 @@ FactoryGirl.define do
   end
 
 
-  
+
 end
 

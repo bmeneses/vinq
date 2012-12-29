@@ -15,8 +15,8 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.new(name: "Example User", email: "user@example.com", 
-    password: "foobar", 
+  before { @user = User.new(name: "Example User", email: "user@example.com",
+    password: "foobar",
     password_confirmation:"foobar") }
 
     subject { @user }
@@ -91,7 +91,7 @@ describe User do
 
 
     describe "return value of authenticate method" do
-      before { @user.save } 
+      before { @user.save }
       let(:found_user) { User.find_by_email(@user.email) }
 
       describe "with valid password" do
@@ -106,18 +106,18 @@ describe User do
 
       end
     end
-    
+
     describe "remember token" do
       before { @user.save }
       its(:remember_token) { should_not be_blank }
     end
-    
+
     describe "with admin attribute set to 'true'" do
       before { @user.toggle!(:admin) }
-      
+
       it { should be_admin }
     end
-    
+
   end
 
 

@@ -18,7 +18,7 @@ class Area < ActiveRecord::Base
   validates :url, presence: true, format: VALID_URL_FORMAT
 
   has_many :regions
-  
+
 
 end
 
