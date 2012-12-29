@@ -35,6 +35,7 @@ group :test, :development do
   gem 'spork'
   gem 'railroady'
   gem 'vcr'
+  gem 'rails_best_practices'
 end
 
 group :test do
