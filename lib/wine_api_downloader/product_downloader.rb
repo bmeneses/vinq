@@ -36,7 +36,7 @@ module WineApiDownloader
 
 					begin #WTF IS HAPPENING HERE? Exceptions that should be thrown
 							  # at line 72 are bubbling up here.
-						@wine.save
+						@wine.save!
 					rescue ActiveRecord::RecordNotUnique
 						Rails.logger.info "Rescue at @wine.save id #{product.id}"
 					end
@@ -44,7 +44,7 @@ module WineApiDownloader
 			end
 
 			def assign_wine(product)
-				value = Wine.create(id: product.Id,
+				value = Wine.create!(id: product.Id,
 														name:         product.Name,
 														url:          product.Url,
 														wine_type:    product.Type,
@@ -82,7 +82,7 @@ module WineApiDownloader
 						varietal = @wine.build_varietal(id: product.Varietal.Id,
 							name: product.Varietal.Name,
 							url: product.Varietal.Url)
-							varietal.save
+							varietal.save!
 					end
 					@wine.varietal = varietal
 				end				
@@ -98,7 +98,7 @@ module WineApiDownloader
 						name: product.Appellation.Name,
 						 url: product.Appellation.Url)
 						assign_region(product)
-						appellation.save					
+						appellation.save!
 					end
 					@wine.appellation = appellation
 				end
@@ -113,7 +113,7 @@ module WineApiDownloader
 							name: product.Appellation.Region.Name,
 							url: product.Appellation.Region.Url)
 						assign_area(product)
-						region.save
+						region.save!
 					end
 					@wine.appellation.region = region
 				end
@@ -129,7 +129,7 @@ module WineApiDownloader
 							url: product.Appellation.Region.Area.Url)
 						puts product.Id
 					end
-					area.save
+					area.save!
 				end
 				@wine.appellation.region.area = area
 			end

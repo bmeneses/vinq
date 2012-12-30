@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209025636) do
+ActiveRecord::Schema.define(:version => 20121227000335) do
 
   create_table "appellations", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20121209025636) do
     t.datetime "updated_at",              :null => false
     t.integer  "region_id",  :limit => 8
   end
+
+  add_index "appellations", ["region_id"], :name => "index_appellations_on_region_id"
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -44,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20121209025636) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "product_attributes", ["wine_id"], :name => "index_product_attributes_on_wine_id"
+
   create_table "product_attributes_wines", :force => true do |t|
     t.integer  "product_attribute_id"
     t.integer  "wine_id"
@@ -60,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20121209025636) do
     t.datetime "updated_at", :null => false
     t.integer  "area_id"
   end
+
+  add_index "regions", ["area_id"], :name => "index_regions_on_area_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -97,5 +103,10 @@ ActiveRecord::Schema.define(:version => 20121209025636) do
     t.integer  "product_attribute_id"
     t.integer  "region_id"
   end
+
+  add_index "wines", ["appellation_id"], :name => "index_wines_on_appellation_id"
+  add_index "wines", ["product_attribute_id"], :name => "index_wines_on_product_attribute_id"
+  add_index "wines", ["region_id"], :name => "index_wines_on_region_id"
+  add_index "wines", ["varietal_id"], :name => "index_wines_on_varietal_id"
 
 end
