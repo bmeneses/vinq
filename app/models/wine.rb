@@ -36,19 +36,37 @@ class Wine < ActiveRecord::Base
 
   belongs_to :appellation
   belongs_to :varietal
+  has_one :region, through: :appellation
   has_many :product_attributes_wines, inverse_of: :wine
   has_many :product_attributes, through: :product_attributes_wines
 
 
 
-  # helpers
-  def region
-    if appellation.nil? || appellation.region.nil?
+  # delegation
+  # def region
+  #   if appellation.nil? || appellation.region.nil?
+  #     return nil
+  #   else
+  #     appellation.region
+  #   end
+  # end
+
+  def varietal_name
+    if varietal.nil? || varietal.name.nil?
       return nil
     else
-      appellation.region
+      varietal.name
     end
   end
+
+  def appellation_name
+    if appellation.nil? || appellation.name.nil?
+      return nil
+    else
+      appellation.name
+    end
+  end
+
 
   # def region_id
   #   if appellation.nil? || appellation.region.nil?

@@ -80,14 +80,15 @@ class WinesController < ApplicationController
  	def wine_query_filter_conditions
  		conditions = session[:wine_index_filters]
  		conditions.inject({}) do |hash, (k,v)|
- 			k = (k.to_s + "_id").to_sym
- 			hash[k] = v.to_i
+ 			k = (k.to_s.pluralize).to_sym
+ 			hash[k] = { id: v.to_i }
  			hash
  		end
  	end
 
  	def query_wines_with_index_filter
- 		Wine.where(wine_query_filter_conditions)
+ 		associations = session[:wine_index_filters].map { |key, val| key }
+ 		Wine.includes(associations).where(wine_query_filter_conditions)
  	end
 
  	# FILTER CLEARING

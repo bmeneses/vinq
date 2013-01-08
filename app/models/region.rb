@@ -23,6 +23,7 @@ class Region < ActiveRecord::Base
   validates :url, presence: true, format: VALID_URL_FORMAT
 
   has_many :appellations
+  has_many :wines, through: :appellations
   belongs_to :area
 
   # TODO: make to_param a mixin

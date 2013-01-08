@@ -62,7 +62,6 @@ describe Wine do
   it { should respond_to(:product_attributes) }
 
   its(:appellation) { should_not be_nil }
-  its(:region) { should_not be_nil }
   its(:area) { should_not be_nil }
 
   # helper tests
@@ -96,6 +95,28 @@ describe Wine do
     end
 
   end
+
+  describe "#varietal_name" do
+    before { wine.varietal = FactoryGirl.create(:varietal, name: "Test Varietal") }
+    its(:varietal_name) { should eq "Test Varietal" }
+
+    context "when varietal is nil" do
+      before { wine.varietal = nil }
+      its(:varietal_name) { should be nil }
+    end
+
+    context "when varietal name is nil" do
+      before { wine.varietal.name = nil }
+      its(:varietal_name) { should be nil }
+    end
+    
+  end
+
+  describe "#appellation_name" do
+    its(:appellation_name) { should eq "Barossa Valley" }
+  end
+
+
 
   describe "when saving with an appellation with region" do
     before do

@@ -3,3 +3,11 @@ TODO:
 Figure out why will_paginate only works with 30 items at a time despite setting WillPaginate.per_page
 
 Module-ify common elments of models such as to_param, valid_url_format, etc. that make sense
+
+Roadmap:
+* Implement ProductAttribute filtering
+* Implement recommendation model
+	- Read about Recommendable gem
+	- Extend user model
+	- Create model for recommendation
+

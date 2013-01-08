@@ -16,6 +16,7 @@ group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'pry'
   gem 'foreman'
+  gem 'bullet'
 end
 
 # Gems used only for assets and not required
@@ -36,6 +37,7 @@ group :test, :development do
   gem 'railroady'
   gem 'vcr'
   gem 'rails_best_practices'
+  gem 'hirb'
 end
 
 group :test do
