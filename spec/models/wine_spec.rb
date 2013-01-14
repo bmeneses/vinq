@@ -118,20 +118,7 @@ describe Wine do
 
 
 
-  describe "when saving with an appellation with region" do
-    before do
-     @wine = FactoryGirl.create(:wine)
-     @wine.create_appellation(id: 123, name: "test", url:"http://www.google.com")
-     @wine.appellation.create_region(id: 520, name: "blah",
-                                     url: "http://www.google.com")
-     @wine.save
-    end
 
-    it "should have region_id automatically populated" do
-      @wine.region_id.should == @wine.appellation.region.id
-    end
-
-  end
 
 
 end

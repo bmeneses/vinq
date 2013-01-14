@@ -20,7 +20,6 @@
 class Wine < ActiveRecord::Base
   include SharedCallbacksValidations
 
-  before_save :add_region_id
 
   attr_accessible :name, :url, :wine_type, :year, :price_min, :price_max,
                   :price_retail, :id, :region
@@ -39,6 +38,7 @@ class Wine < ActiveRecord::Base
   has_one :region, through: :appellation
   has_many :product_attributes_wines, inverse_of: :wine
   has_many :product_attributes, through: :product_attributes_wines
+
 
 
 
@@ -89,13 +89,13 @@ class Wine < ActiveRecord::Base
 
   private
 
-    def add_region_id
+    # def add_region_id
 
-      if !appellation.nil? && !appellation.region.nil?
-        self.region_id = appellation.region.id
-      end
-      #binding.pry if !appellation.nil?
-    end
+    #   if !appellation.nil? && !appellation.region.nil?
+    #     self.region_id = appellation.region.id
+    #   end
+    #   #binding.pry if !appellation.nil?
+    # end
 
 
 
