@@ -17,6 +17,7 @@ group :development do
   gem 'pry'
   gem 'foreman'
   gem 'bullet'
+  gem 'flog'
 end
 
 # Gems used only for assets and not required
@@ -38,6 +39,7 @@ group :test, :development do
   gem 'vcr'
   gem 'rails_best_practices'
   gem 'hirb'
+
 end
 
 group :test do
