@@ -28,12 +28,17 @@ FactoryGirl.define do
       #product_attribute { FactoryGirl.create(:product_attribute)}
     end
 
+    # factory :one_wine do
+    #   appellation name: "Appellation 1"
+    #   appellation.region = region(id: 999, name: "Region 1")
+
   end
 
   factory :appellation do
     sequence(:id) { |n| n }
     sequence(:name)    { |n| "#{n}-TestAppellation"}
     url "http://www.wine.com/V6/Calera-Central-Coast-Chardonnay-2010/wine/113077/detail.aspx?hid=hp_col1_9020new"
+    region
   end
 
   factory :region do

@@ -116,7 +116,7 @@ describe Wine do
     its(:appellation_name) { should eq "Barossa Valley" }
   end
 
-
+  describe "#"
 
 
 

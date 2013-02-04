@@ -22,7 +22,7 @@ class Wine < ActiveRecord::Base
 
 
   attr_accessible :name, :url, :wine_type, :year, :price_min, :price_max,
-                  :price_retail, :id, :region
+                  :price_retail, :id, :region_id, :region
 
 
   validates :name, :wine_type, presence: true
@@ -38,6 +38,8 @@ class Wine < ActiveRecord::Base
   has_one :region, through: :appellation
   has_many :product_attributes_wines, inverse_of: :wine
   has_many :product_attributes, through: :product_attributes_wines
+
+  
 
 
 
