@@ -20,7 +20,7 @@ class Varietal < ActiveRecord::Base
   VALID_URL_FORMAT = /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   validates :url, presence: true, format: VALID_URL_FORMAT
 
-  # has_one :winetype
+  has_many :wines
 
   # TODO: make to_param a mixin
   def to_param

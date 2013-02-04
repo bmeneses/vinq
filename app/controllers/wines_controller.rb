@@ -13,9 +13,11 @@ class WinesController < ApplicationController
 		setup_index_filters
 		add_index_filters_from_params
 		@filter_conditions = active_filters
-		@wines = query_wines_with_index_filter
-		filter_attributes_on_wines
-		@wines = @wines.paginate(page: params[:page])
+		#@wines = query_wines_with_index_filter
+		#filter_attributes_on_wines
+		list = WineList.new
+		@wines = list.get(@filter_conditions).paginate(page: params[:page])
+		@attributes = list.attributes
 	end
 
 	def cap_and_pluralize_sym(sym)
@@ -47,6 +49,8 @@ class WinesController < ApplicationController
 		@attributes = {}
 	end
 
+
+	#change order, this pre-supposes that the filter works
 	def add_index_filters_from_params
 		WINE_FILTER_TYPES.each do |type|
 			if !(params[type] == nil)

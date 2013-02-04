@@ -7,6 +7,7 @@ class WineList
 	def get(params = {})
 		@list = get_list(params)
 		@attributes = get_attributes(params)
+		@list
 	end
 
 	private
@@ -24,10 +25,10 @@ class WineList
 			attrs = {}
 			WINE_FILTER_TYPES.each do |type|
 				model = type.to_s.classify.constantize
-				if params[type] == nil
-					attrs[type] = model.scoped.pluck(:name)
+				if params == {}
+					attrs[type] = model.scoped
 				else
-					attrs[type] = model.where(id: params[type]).pluck(:name)
+					attrs[type] = model.joins(wines: associations(params)).where(filter_conditions(params)).uniq
 				end
 			end
 			attrs
