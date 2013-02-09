@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'pry'
+
 
 # describe "WinePages" do
 #   describe "GET /wine_pages" do

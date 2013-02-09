@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + "/../../lib/ruby_extensions"
 class WinesController < ApplicationController	
-	require 'pry'
 
 	helper_method :cap_and_pluralize_sym
 	helper_method :deparameterize_filter
@@ -30,7 +29,7 @@ class WinesController < ApplicationController
 	def attribute_name_from_filter(type)
 		HABTM_FILTER_TYPES.include?(type) ? @attributes[type.pluralize].first.name :
 																				@attributes[type].first.name
-	end
+end
 
 
 	def clear_filter

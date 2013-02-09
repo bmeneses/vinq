@@ -1,4 +1,4 @@
-#require 'pry'
+
 module WineApi
   class Category
     include HTTParty

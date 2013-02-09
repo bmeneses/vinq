@@ -23,17 +23,14 @@
 				</ul>
 			<% end %>
 			<% WINE_FILTER_TYPES.each do |type| %>
-
 				<% if @filter_conditions[type].nil? &&
 							!@attributes[type].nil? &&
 							(@attributes[type].count > 1) %>
-
 					<div>
 						<h3><%= cap_and_pluralize_sym(type) %></h3>
 							<ul class="category-filter">
 								<% @attributes[type].each do |attribute| %>
 								 <li>
-								 		<% #if type == :product_attributes; binding.pry; end; %>
 								 		<%= link_to attribute.name,
 								 			 	  polymorphic_path(attribute) %>
 								 </li>

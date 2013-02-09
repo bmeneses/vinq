@@ -4,8 +4,6 @@ require File.dirname(__FILE__) + "/../../app/models/product_attribute"
 require File.dirname(__FILE__) + "/../wine_api/category"
 require File.dirname(__FILE__) + "/../wine_api/catalog"
 
-# require 'pry'
-
 module WineApiDownloader
   class Downloader
 
