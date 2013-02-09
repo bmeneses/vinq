@@ -15,9 +15,3 @@ test:
           adapter: postgresql
           database: vinq_test
           host: localhost
-
-production:
-          adapter: postgresql
-          database: vinq
-          host: localhost
-
