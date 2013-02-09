@@ -16,6 +16,17 @@ class Array
 			end
 			result
 		end
-
 	end
+
+	def pairwise_cross
+		reduce([]) do |result, element|
+			map do |c|
+				unless element == c
+					result << [element, c].flatten 
+				end
+			end
+			result
+		end
+	end
+
 end

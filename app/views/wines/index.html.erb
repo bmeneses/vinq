@@ -13,6 +13,7 @@
 			  	<%= link_to "Clear All Filters", clear_filter_path(:all) %>
 			  	<ul class="category-filter">
 			  	<% @filter_conditions.each do |key, val| %>
+			  		<% #binding.pry %>
 			  			<li>
 			  				<%= val = attribute_name_from_filter(key) %>
 			  				<%= link_to "(clear)", clear_filter_path(key.to_s),
@@ -22,6 +23,7 @@
 				</ul>
 			<% end %>
 			<% WINE_FILTER_TYPES.each do |type| %>
+
 				<% if @filter_conditions[type].nil? &&
 							!@attributes[type].nil? &&
 							(@attributes[type].count > 1) %>
@@ -31,7 +33,9 @@
 							<ul class="category-filter">
 								<% @attributes[type].each do |attribute| %>
 								 <li>
-								 		<%= link_to attribute.name, polymorphic_path(attribute) %>
+								 		<% #if type == :product_attributes; binding.pry; end; %>
+								 		<%= link_to attribute.name,
+								 			 	  polymorphic_path(attribute) %>
 								 </li>
 								<% end %>
 							</ul>

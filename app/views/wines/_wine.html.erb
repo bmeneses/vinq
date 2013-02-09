@@ -9,6 +9,18 @@
 		<span class ="appellation-name">
 			<%= wine.appellation.nil? ? '(no appellation)' : wine.appellation.name %>
 		</span>
+		<div class="attribute">
+		
+		<% if !wine.product_attributes.nil? %>
+			<% wine.product_attributes.each do |attrib| %>
+				<span class="attribute-name"><%= attrib.name %></span>
+				<% if !(attrib == wine.product_attributes.last) %>
+					|
+				<% end %>
+			<% end %>
+		<% end %>
+		</div>
+
 	<!-- this is where we'll put the buttons partial -->
 	</div>
 

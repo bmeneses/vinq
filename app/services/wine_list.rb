@@ -2,9 +2,10 @@ require File.dirname(__FILE__) + "/../../lib/ruby_extensions"
 class WineList
 	attr_accessor :list, :attributes
 
-	WINE_FILTER_TYPES = [:region, :appellation, :varietal, :product_attributes]
+	::WINE_FILTER_TYPES = [:region, :appellation, :varietal, :product_attributes]
 
 	def get(params = {})
+		#if params != {}; binding.pry; end;
 		@list = get_list(params)
 		@attributes = get_attributes(params)
 		@list

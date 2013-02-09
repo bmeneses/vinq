@@ -64,3 +64,17 @@ Then /^I should( not)? see a link to clear the (#{CAPTURE_A_WORD}) filter$/ do |
 	negate ? page.should_not(have_content("#{link_text} (clear)")) : page.should(have_content("#{link_text} (clear)"))
 end
 
+# PRODUCT_ATTRIBUTE
+Given /^I have (?:a|another) wine with attribute (#{CAPTURE_A_WORD})$/ do |attrib|
+  wine = FactoryGirl.create(:wine)
+  wine.product_attributes << FactoryGirl.create(:product_attribute, name: attrib)
+end
+
+Then /^I should( not)? see wines with attribute (#{CAPTURE_A_WORD})$/ do |negate, attribute|
+  if negate
+    page.should_not have_selector('span.attribute-name', text: attribute)
+  else
+    page.should have_selector('span.attribute-name', text: attribute)
+  end
+end
+

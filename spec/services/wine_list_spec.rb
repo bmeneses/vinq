@@ -16,6 +16,35 @@ shared_examples_for "a wine list filter" do |type|
 	end
 end
 
+shared_examples_for "a wine list filter checking both attributes" do
+	its(:list) { should be_a_kind_of(ActiveRecord::Relation) }
+
+	it "should only have wines that belong to the filter" do
+		wine_list.list.should include(@one_wine)
+		wine_list.list.should_not include(@another_wine)
+	end
+
+	it "should only have attributes that belong to the filter" do
+		wine_list.attributes[test_type].should include(@test_attribute1)
+		wine_list.attributes[passive_type].should include(@test_attribute2)
+		wine_list.attributes[test_type].should_not include(@negative_attribute1)
+		wine_list.attributes[passive_type].should_not include(@negative_attribute2)
+	end
+end
+
+
+shared_examples_for "a wine list filter with single parameter" do
+	before { wine_list.get({ test_type => @test_attribute1.id }) }
+	it_behaves_like "a wine list filter checking both attributes"
+end
+
+shared_examples_for "a wine list filter with multiple parameters" do
+	before { wine_list.get({ test_type => @test_attribute1.id,
+												passive_type => @test_attribute2.id }) }
+	it_behaves_like "a wine list filter checking both attributes"
+end
+
+###### MAIN TEST BODY HERE
 
 describe WineList do
 
@@ -50,53 +79,29 @@ describe WineList do
 			end
 		end
 
-		context "with varietal filter" do
-			let!(:first_type)  { :varietal }
-			let!(:second_type) { :appellation } 
-			before do
-				@test_attribute1 = FactoryGirl.create(first_type)
-				@negative_attribute1 = FactoryGirl.create(first_type)
+		context "pairwise testing" do
+			[:appellation, :varietal].pairwise_cross.each do |pair|
+				context "with varietal filter" do
+					let!(:test_type)  { pair.first }
+					let!(:passive_type) { pair.last } 
+					before do
+						@test_attribute1 = FactoryGirl.create(test_type)
+						@negative_attribute1 = FactoryGirl.create(test_type)
 
-				@test_attribute2 = FactoryGirl.create(second_type)
-				@negative_attribute2 = FactoryGirl.create(second_type)
+						@test_attribute2 = FactoryGirl.create(passive_type)
+						@negative_attribute2 = FactoryGirl.create(passive_type)
 
-				@one_wine = FactoryGirl.create(:wine, { first_type => @test_attribute1, 
-																								second_type => @test_attribute2 })
-				@another_wine = FactoryGirl.create(:wine, { first_type => @negative_attribute1, 
-																										second_type => @negative_attribute2 })
-				wine_list.get({ first_type => @test_attribute1.id })
-			end
+						@one_wine = FactoryGirl.create(:wine, { test_type => @test_attribute1, 
+																										passive_type => @test_attribute2 })
+						@another_wine = FactoryGirl.create(:wine, { test_type => @negative_attribute1, 
+																												passive_type => @negative_attribute2 })
+					end
 
-			its(:list) { should be_a_kind_of(ActiveRecord::Relation) }
-
-			it "should only have wines that belong to the filter" do
-				wine_list.list.should include(@one_wine)
-				wine_list.list.should_not include(@another_wine)
-			end
-
-			it "should only have attributes that belong to the filter" do
-				wine_list.attributes[first_type].should include(@test_attribute1)
-				wine_list.attributes[second_type].should include(@test_attribute2)
-				wine_list.attributes[first_type].should_not include(@negative_attribute1)
-				wine_list.attributes[second_type].should_not include(@negative_attribute2)
-			end
-		end
-
-		context "with appellation filter" do
-			[:appellation].each do |type|
-
-				before do
-					@test_attribute = FactoryGirl.create(type)
-					@negative_attribute = FactoryGirl.create(type)
-					@one_wine = FactoryGirl.create(:wine, { type => @test_attribute })
-					@another_wine = FactoryGirl.create(:wine, { type => @negative_attribute })
-					wine_list.get({ type => @test_attribute.id })
+					it_behaves_like "a wine list filter with single parameter"
+					it_behaves_like "a wine list filter with multiple parameters"
 				end
-
-				it_behaves_like "a wine list filter", type
 			end
 		end
-
 
 		#TODO: DRY this up, repetitive
 		context "with product_attribute" do
@@ -137,47 +142,6 @@ describe WineList do
 				wine_list.attributes[type].should_not include(@negative_attribute.region)
 			end
 		end
-
-		# TODO: This is awfully painful and doesn't have great test coverage.
-		# Need to figure out how to generalize the tests and test combinations of them.
-		context "with multiple attributes" do
-			context "two attributes" do
-				let!(:first_type)  { :varietal }
-				let!(:second_type) { :appellation } 
-				before do
-					@test_attribute1 = FactoryGirl.create(first_type)
-					@negative_attribute1 = FactoryGirl.create(first_type)
-
-					@test_attribute2 = FactoryGirl.create(second_type)
-					@negative_attribute2 = FactoryGirl.create(second_type)
-
-					@one_wine = FactoryGirl.create(:wine, { first_type => @test_attribute1, 
-																									second_type => @test_attribute2 })
-					@another_wine = FactoryGirl.create(:wine, { first_type => @negative_attribute1, 
-																											second_type => @negative_attribute2 })
-					wine_list.get({ first_type => @test_attribute1.id,
-													second_type => @test_attribute2.id })
-				end
-
-				it "should only have wines that belong to the designated filters" do
-					wine_list.list.should include(@one_wine)
-					wine_list.list.should_not include(@another_wine)
-				end
-
-				it "should only have attributes that belong to the region filter" do
-					wine_list.attributes[first_type].should include(@test_attribute1)
-					wine_list.attributes[second_type].should include(@test_attribute2)
-					wine_list.attributes[first_type].should_not include(@negative_attribute1)
-					wine_list.attributes[second_type].should_not include(@negative_attribute2)
-				end
-
-			end
-
-		end
-
-
-
 	end
-
-	
 end
+

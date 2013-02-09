@@ -34,4 +34,9 @@ describe Array do
 		end
 
 	end
+
+	describe "#pairwise_cross" do
+		specify { [:a, :b, :c].pairwise_cross.should 
+			eq([[:a, :b], [:a, :c], [:b, :a], [:b, :c], [:c, :a], [:c, :b]]) }
+	end
 end

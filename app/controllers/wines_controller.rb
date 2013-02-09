@@ -1,31 +1,35 @@
+require File.dirname(__FILE__) + "/../../lib/ruby_extensions"
 class WinesController < ApplicationController	
 	require 'pry'
+
 	helper_method :cap_and_pluralize_sym
 	helper_method :deparameterize_filter
 	helper_method :attribute_name_from_filter
 
 
 
-	::WINE_FILTER_TYPES = [:region, :appellation, :varietal]
-	FIRST = 0
+	WINE_FILTER_TYPES = [:region, :appellation, :varietal, :product_attributes]
+	HABTM_FILTER_TYPES = [:product_attributes]
 
+	FIRST = 0
+	
 	def index
 		setup_index_filters
 		add_index_filters_from_params
-		@filter_conditions = active_filters
-		#@wines = query_wines_with_index_filter
-		#filter_attributes_on_wines
+		@filter_conditions = session[:wine_index_filters]
+
 		list = WineList.new
 		@wines = list.get(@filter_conditions).paginate(page: params[:page])
 		@attributes = list.attributes
 	end
 
 	def cap_and_pluralize_sym(sym)
-		sym.to_s.capitalize.pluralize
+		sym.to_s.humanize.titleize.pluralize
 	end
 
 	def attribute_name_from_filter(type)
-		@attributes[type][FIRST].name
+		HABTM_FILTER_TYPES.include?(type) ? @attributes[type.pluralize].first.name :
+																				@attributes[type].first.name
 	end
 
 
@@ -53,48 +57,14 @@ class WinesController < ApplicationController
 	#change order, this pre-supposes that the filter works
 	def add_index_filters_from_params
 		WINE_FILTER_TYPES.each do |type|
+			#type = type.singularize
 			if !(params[type] == nil)
 				session[:wine_index_filters].merge!(type => params[type])
 			end
 		end
 	end
 
-	def filter_attributes_on_wines
-		WINE_FILTER_TYPES.each do |type|
-			@attributes[type] = filter_attribute(type)
-		end
-	end
-
-	def filter_attribute(attribute)
- 		# @wines.map { |wine| wine.send(attribute) }.uniq
- 		filtered_attributes = []
- 		@wines.each do |wine|
- 			this_attribute = wine.send(attribute)
- 			unless this_attribute == nil
- 				filtered_attributes << this_attribute
- 			end
- 		end
- 		filtered_attributes.uniq.sort_by &:name
- 	end
-
- 	def active_filters
- 		conditions = session[:wine_index_filters]
- 	end
-
- 	def wine_query_filter_conditions
- 		conditions = session[:wine_index_filters]
- 		conditions.inject({}) do |hash, (k,v)|
- 			k = (k.to_s.pluralize).to_sym
- 			hash[k] = { id: v.to_i }
- 			hash
- 		end
- 	end
-
- 	def query_wines_with_index_filter
- 		associations = session[:wine_index_filters].map { |key, val| key }
- 		Wine.includes(associations).where(wine_query_filter_conditions)
- 	end
-
+	
  	# FILTER CLEARING
  	def clear_all_filters
  		session[:wine_index_filters] = nil

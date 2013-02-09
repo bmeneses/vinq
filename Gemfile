@@ -38,7 +38,7 @@ group :test, :development do
   gem 'railroady'
   gem 'vcr'
   gem 'rails_best_practices'
-  gem 'hirb'
+  gem 'jazz_hands'
 
 end
 

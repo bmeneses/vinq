@@ -1,9 +1,11 @@
 SampleApp::Application.routes.draw do
 
-
+  # pattern:
+  # get 'controller/what_i_want_on_the_link', to: 'controller#action', as: 'model_name'
   get 'wines/appellation/:appellation', to: 'wines#index', as: "appellation"
   get 'wines/region/:region', to: 'wines#index', as: "region"
   get 'wines/varietal/:varietal', to: 'wines#index', as: "varietal"
+  get 'wines/attribute/:product_attributes', to: 'wines#index', as: "product_attribute"
   get 'wines/clear_filter/:filter', to: 'wines#clear_filter', as: "clear_filter"
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
